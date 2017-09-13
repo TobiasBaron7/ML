@@ -1,0 +1,27 @@
+/*************************/
+test-dataset:	All Errors of complete Yale B Extended (using only haarcascade without pre-processing)
+size:		6968
+/************************/
+
+
+____________________________________________
+
+mode:		original
+success:	0/6968		0%
+time:		384s (with progress-print)
+____________________________________________
+
+mode:		original
+success:	0/6968		0%
+time:		373s (without progress-print)
+____________________________________________
+
+mode:		histogram-equalization with opencv default
+success:	4170/6968 	60%
+time:		726s
+____________________________________________
+
+mode:		histogram-equalization with numpy
+success:	4162/6968 	60%
+time:		818s
+____________________________________________

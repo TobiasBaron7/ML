@@ -1,0 +1,4 @@
+**/FaceDetection_FaceRecognition/data
+*.jpg
+*.jfif
+*.pgm

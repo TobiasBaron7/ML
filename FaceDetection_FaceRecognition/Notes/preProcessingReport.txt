@@ -1,0 +1,43 @@
+____________________________________________
+test-dataset:	complete yaleB Extended
+size:		16380/16380
+mode:		original
+success:	9412/16380 	57%
+____________________________________________
+test-dataset:	yaleB11
+size:		585/585
+mode:		original
+success:	406/585 	69%
+____________________________________________
+test-dataset:	yaleB11
+size:		585/585
+mode:		histogram-equalization at each image
+success:	581/585 	99%
+------------------------------------------------------------------------
+____________________________________________
+test-dataset:	yaleB11
+size:		585/585
+mode:		histogram-equalization only if detection failed at first
+success:	581/585 	99%
+____________________________________________
+test-dataset:	yaleB11, yaleB12, yaleB13, yaleB15, yaleB16
+size:		2925/2925
+mode:		histogram-equalization only if detection failed at first
+success:	2473/2925 	85%
+____________________________________________
+------------------------------------------------------------------------
+test-dataset:	yaleB11
+size:		585/585
+mode:		adaptive histogram-equalization only if detection failed at first with CLAHE (clipLimit=2, tileGridSize=(8,8))
+success:	479/585 	82%
+____________________________________________
+test-dataset:	yaleB11
+size:		585/585
+mode:		adaptive histogram-equalization only if detection failed at first with CLAHE (clipLimit=10, tileGridSize=(20,20))
+success:	500/585 	85%
+____________________________________________
+test-dataset:	yaleB11
+size:		585/585
+mode:		adaptive histogram-equalization only if detection failed at first with CLAHE (clipLimit=15, tileGridSize=(50,50))
+success:	433/585 	74%
+____________________________________________
