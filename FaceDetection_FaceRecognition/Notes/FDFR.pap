@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FRAME GUID="2FB25471-B62C-4EE6-BD43-F819C095ACF8" FORMAT="0000" APP_VERSION="2.2.0.8" CHECKSUM="ED40F11D58814639">
+  <PROJECT FORMAT="1.00" NAME="FDFR" AUTHOR="FinalFred" CREATED="2017.09.19 10:52:57" MODIFIED="2017.09.19 12:02:13">
+    <DIAGRAMS>
+      <DIAGRAM FORMAT="1.00" ID="0" NAME="FDFR_GUI" CREATED="2017.09.19 10:53:04" MODIFIED="2017.09.19 12:02:13">
+        <LAYOUT FORMAT="1.00" COLUMNS="4" ROWS="17">
+          <ENTRIES>
+            <ENTRY COLUMN="0" ROW="7">
+              <FIGURE SUBTYPE="PapComment" FORMAT="1.00" ID="36">
+                <TEXT><![CDATA[either select all images of this folder and subfolders or select elementwise with checkboxes]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="9">
+              <FIGURE SUBTYPE="PapComment" FORMAT="1.00" ID="86">
+                <TEXT><![CDATA[can be one or more]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="0" ROW="11">
+              <FIGURE SUBTYPE="PapComment" FORMAT="1.00" ID="87">
+                <TEXT><![CDATA[can be one or more]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="5">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="21">
+                <TEXT><![CDATA[set_input_path]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="6">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="28">
+                <TEXT><![CDATA[get_all_images_from_path()]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="7">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="30">
+                <TEXT><![CDATA[select_images]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="8">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="64">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="9">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="73">
+                <TEXT><![CDATA[set_pre_processing_methods]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="10">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="77">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="11">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="82">
+                <TEXT><![CDATA[set_failed_processing_methods]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="1" ROW="12">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="92">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="0" ANCHOR="True">
+              <FIGURE SUBTYPE="PapTitle" FORMAT="1.00" ID="0">
+                <TEXT><![CDATA[FDFR_GUI]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="1">
+              <FIGURE SUBTYPE="PapStart" FORMAT="1.00" ID="1">
+                <TEXT><![CDATA[Start]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="2">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="37">
+                <TEXT><![CDATA[set_default_for_testing]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="3">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="39">
+                <TEXT><![CDATA[is_default?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="4">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="16">
+                <TEXT><![CDATA[set_input_type]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="5">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="19">
+                <TEXT><![CDATA[input_type is image?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="6">
+              <FIGURE SUBTYPE="PapActivity" FORMAT="1.00" ID="32">
+                <TEXT><![CDATA[list_availiable_cams()]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="7">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="34">
+                <TEXT><![CDATA[select_input_cam]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="8">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="62">
+                <TEXT><![CDATA[set_pre_processing]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="9">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="69">
+                <TEXT><![CDATA[is_pre_processing?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="10">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="75">
+                <TEXT><![CDATA[set_process_failed_images]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="11">
+              <FIGURE SUBTYPE="PapCondition" FORMAT="1.00" ID="80">
+                <TEXT><![CDATA[is_process_failed_images?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="12">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="89">
+                <TEXT><![CDATA[set_find_only_main_face]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="13">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="95">
+                <TEXT><![CDATA[set_face_localization_method]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="14">
+              <FIGURE SUBTYPE="PapInput" FORMAT="1.00" ID="98">
+                <TEXT><![CDATA[set_face_output_size]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="15">
+              <FIGURE SUBTYPE="PapModule" FORMAT="1.00" ID="10">
+                <TEXT><![CDATA[Run FDFR]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="2" ROW="16">
+              <FIGURE SUBTYPE="PapEnd" FORMAT="1.00" ID="2">
+                <TEXT><![CDATA[Ende]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="3">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="41">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="4">
+              <FIGURE SUBTYPE="PapComment" FORMAT="1.00" ID="18">
+                <TEXT><![CDATA[choose image / video (livecam)]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="8">
+              <FIGURE SUBTYPE="PapComment" FORMAT="1.00" ID="68">
+                <TEXT><![CDATA[pre-process every image before analyzing or only process failed images?]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="12">
+              <FIGURE SUBTYPE="PapComment" FORMAT="1.00" ID="91">
+                <TEXT><![CDATA[set if only the main-face or if every face should be processed]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="13">
+              <FIGURE SUBTYPE="PapComment" FORMAT="1.00" ID="97">
+                <TEXT><![CDATA[currently haarcascades or dlib-landmarks]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="14">
+              <FIGURE SUBTYPE="PapComment" FORMAT="1.00" ID="100">
+                <TEXT><![CDATA[size in pixel (width should be height!)]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+            <ENTRY COLUMN="3" ROW="15">
+              <FIGURE SUBTYPE="PapConnector" FORMAT="1.00" ID="59">
+                <TEXT><![CDATA[]]></TEXT>
+              </FIGURE>
+            </ENTRY>
+          </ENTRIES>
+        </LAYOUT>
+        <CONNECTIONS>
+          <CONNECTION FORMAT="1.00" ID="3" FROM="1" TO="37" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="17" FROM="16" TO="19" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="11" FROM="10" TO="2" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="27" FROM="19" TO="21" TEXT="yes" />
+          <CONNECTION FORMAT="1.00" ID="20" FROM="19" TO="32" TEXT="no" />
+          <CONNECTION FORMAT="1.00" ID="29" FROM="21" TO="28" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="31" FROM="28" TO="30" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="33" FROM="32" TO="34" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="35" FROM="34" TO="62" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="38" FROM="37" TO="39" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="40" FROM="39" TO="16" TEXT="no" />
+          <CONNECTION FORMAT="1.00" ID="42" FROM="39" TO="41" TEXT="yes" />
+          <CONNECTION FORMAT="1.00" ID="44" FROM="41" TO="59" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="61" FROM="59" TO="10" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="63" FROM="62" TO="69" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="65" FROM="30" TO="64" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="66" FROM="64" TO="62" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="70" FROM="69" TO="75" TEXT="no" />
+          <CONNECTION FORMAT="1.00" ID="74" FROM="69" TO="73" TEXT="yes" />
+          <CONNECTION FORMAT="1.00" ID="76" FROM="75" TO="80" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="78" FROM="73" TO="77" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="79" FROM="77" TO="75" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="90" FROM="89" TO="95" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="83" FROM="80" TO="82" TEXT="yes" />
+          <CONNECTION FORMAT="1.00" ID="81" FROM="80" TO="89" TEXT="no" />
+          <CONNECTION FORMAT="1.00" ID="93" FROM="82" TO="92" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="94" FROM="92" TO="89" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="96" FROM="95" TO="98" TEXT="" />
+          <CONNECTION FORMAT="1.00" ID="99" FROM="98" TO="10" TEXT="" />
+        </CONNECTIONS>
+      </DIAGRAM>
+    </DIAGRAMS>
+  </PROJECT>
+</FRAME>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>770</y>
+      <w>410</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>FaceFeature
+-
++ErrorCode
+-
++extractFeatures(image:img, mode:enum):extracedFeatures[]
+-CNN_VGG_16(ref vec:long[], ref output:long[]): ErrorCode
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>80</x>
+      <y>770</y>
+      <w>380</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>FaceExtractor
+-
++ErrorCode
+-
++extract_faces(img:image, mode:enum):extractedFaces[]
+-img2gray(ref img:image):ErrorCode
+-histogram_equalization(ref image:img):ErrorCode
+-adaptive_histogram_equalization(ref image:img):ErrorCode
+-gamma_correction(ref image:img): ErrorCode
+-haarcascades_detection(ref image:img): ErrorCode
+-landmark_detection(ref image:img)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>950</x>
+      <y>770</y>
+      <w>370</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>FaceIdentificator
+-
++ErrorCode
+-faceDB:sqlite
+-
++identify(featureVector:long[], mode:enum):string
+-kNearest(ref vec:long[], n:int): ErrorCode
+-euclideanDistance(v1:long[], v2:long[]):ErrorCode
+-citymapDistance(v1:long[], v2:long[]):ErrorCode
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>300</y>
+      <w>300</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>FDFR
+-
++ErrorCode
+-
+-readImage()
+-readStream()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1310</x>
+      <y>250</y>
+      <w>200</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+IdentificationModes
+-
+NEAREST_NEIGHBOUR
+K_NEAREST_NEIGHBOURS
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1330</x>
+      <y>500</y>
+      <w>180</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+DistanceModes
+-
+EUCLIDEAN
+CITY_MAP
+WEIGHTED_X_SQUARE</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1180</x>
+      <y>20</y>
+      <w>290</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+ImageProcessingModes
+-
+HISTOGRAM_EQUALIZATION
+ADAPTIVE_HISTOGRAM_EQUALIZATION
+GAMMA_CORRECTION
+FRONTALIZATION
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>680</x>
+      <y>0</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>GUI
+-
+-guiElements
+-settings
+-
++onPress()
++onClose()
++start()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>780</x>
+      <y>110</y>
+      <w>30</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>620</y>
+      <w>510</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;150.0;490.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>620</y>
+      <w>410</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>390.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>620</y>
+      <w>30</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>70</x>
+      <y>360</y>
+      <w>160</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+ErrorCode
+-
+OK
+NULL
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>460</y>
+      <w>290</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+FaceLocalizationModes
+-
+HAARCASCADES_FACE_PRE_TRAINED
+DLIB_LANDMARKS_PRE_TRAINED
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1000</x>
+      <y>260</y>
+      <w>220</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+FeatureExtractionModes
+-
+CNN_VGG_16_PRE_TRAINED
+//CNN_LANDMARK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>1020</y>
+      <w>180</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>DistanceMesaure
+-
+-
++get_euclidean_dist(v1:long[], v2:long[])
++get_citymap_dist(v1:long[], v2:long[])</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
