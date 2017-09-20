@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>500</x>
-      <y>770</y>
-      <w>410</w>
-      <h>150</h>
+      <x>791</x>
+      <y>630</y>
+      <w>287</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>FaceFeature
 -
@@ -24,32 +24,34 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>80</x>
-      <y>770</y>
-      <w>380</w>
-      <h>180</h>
+      <x>497</x>
+      <y>630</y>
+      <w>273</w>
+      <h>245</h>
     </coordinates>
     <panel_attributes>FaceExtractor
 -
 +ErrorCode
 -
-+extract_faces(img:image, mode:enum):extractedFaces[]
--img2gray(ref img:image):ErrorCode
--histogram_equalization(ref image:img):ErrorCode
--adaptive_histogram_equalization(ref image:img):ErrorCode
--gamma_correction(ref image:img): ErrorCode
--haarcascades_detection(ref image:img): ErrorCode
--landmark_detection(ref image:img)
++extract_faces(
+ref image:img,
+ref ImageProcessingModes[]:pre_processing_methods,
+ref ImageProcessingModes[]:post_processing_methods,
+ref int:num_of_faces,
+ref FaceLocalisationModes:localization_method,
+ref int:face_out_width,
+ref int:face_out_height):extractedFaces[]
+
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>950</x>
-      <y>770</y>
-      <w>370</w>
-      <h>140</h>
+      <x>1106</x>
+      <y>630</y>
+      <w>259</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>FaceIdentificator
 -
@@ -66,15 +68,24 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>300</y>
-      <w>300</w>
-      <h>330</h>
+      <x>882</x>
+      <y>301</y>
+      <w>210</w>
+      <h>231</h>
     </coordinates>
     <panel_attributes>FDFR
 -
 +ErrorCode
 -
++run(
+String:input_type,
+String:input_path,
+ImageProcessingModes[]:pre_processing_methods,
+ImageProcessingModes[]:post_processing_methods,
+int:num_of_faces,
+FaceLocalisationModes:face_localization_method,
+int:face_out_width,
+int:face_out_height)
 -readImage()
 -readStream()</panel_attributes>
     <additional_attributes/>
@@ -82,10 +93,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1310</x>
-      <y>250</y>
-      <w>200</w>
-      <h>190</h>
+      <x>1358</x>
+      <y>266</y>
+      <w>140</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 IdentificationModes
@@ -98,10 +109,10 @@ K_NEAREST_NEIGHBOURS
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1330</x>
-      <y>500</y>
-      <w>180</w>
-      <h>200</h>
+      <x>1372</x>
+      <y>441</y>
+      <w>126</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 DistanceModes
@@ -114,10 +125,10 @@ WEIGHTED_X_SQUARE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1180</x>
-      <y>20</y>
-      <w>290</w>
-      <h>190</h>
+      <x>1267</x>
+      <y>105</y>
+      <w>203</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 ImageProcessingModes
@@ -132,19 +143,29 @@ FRONTALIZATION
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
+      <x>917</x>
       <y>0</y>
-      <w>210</w>
-      <h>120</h>
+      <w>147</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>GUI
 -
 -guiElements
 -settings
 -
-+onPress()
++set_default_for_testing()
++set_input_type()
++set_input_path()
++select_input_cam()
++set_pre_processing()
++select_pre_processing_methods()
++set_post_processing()
++select_post_processing_methods()
++select_num_of_faces()
++select_face_localisation_method()
++select_face_output_size()
 +onClose()
-+start()
++startFDFR()
 
 </panel_attributes>
     <additional_attributes/>
@@ -152,21 +173,21 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>780</x>
-      <y>110</y>
-      <w>30</w>
-      <h>210</h>
+      <x>987</x>
+      <y>203</y>
+      <w>21</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>620</y>
-      <w>510</w>
-      <h>170</h>
+      <x>637</x>
+      <y>525</y>
+      <w>357</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;150.0;490.0;10.0</additional_attributes>
@@ -174,10 +195,10 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>620</y>
-      <w>410</w>
-      <h>170</h>
+      <x>973</x>
+      <y>525</y>
+      <w>287</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>390.0;150.0;10.0;10.0</additional_attributes>
@@ -185,10 +206,10 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>620</y>
-      <w>30</w>
-      <h>170</h>
+      <x>973</x>
+      <y>525</y>
+      <w>21</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
@@ -196,29 +217,13 @@ FRONTALIZATION
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>70</x>
-      <y>360</y>
-      <w>160</w>
-      <h>200</h>
+      <x>1134</x>
+      <y>413</y>
+      <w>203</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
-ErrorCode
--
-OK
-NULL
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>990</x>
-      <y>460</y>
-      <w>290</w>
-      <h>180</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;enum&gt;&gt;
-FaceLocalizationModes
+FaceLocalisationModes
 -
 HAARCASCADES_FACE_PRE_TRAINED
 DLIB_LANDMARKS_PRE_TRAINED
@@ -228,10 +233,10 @@ DLIB_LANDMARKS_PRE_TRAINED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1000</x>
-      <y>260</y>
-      <w>220</w>
-      <h>180</h>
+      <x>1141</x>
+      <y>273</y>
+      <w>154</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 FeatureExtractionModes
@@ -243,10 +248,10 @@ CNN_VGG_16_PRE_TRAINED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1140</x>
-      <y>1020</y>
-      <w>180</w>
-      <h>170</h>
+      <x>1239</x>
+      <y>805</y>
+      <w>126</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>DistanceMesaure
 -
@@ -254,5 +259,80 @@ CNN_VGG_16_PRE_TRAINED
 +get_euclidean_dist(v1:long[], v2:long[])
 +get_citymap_dist(v1:long[], v2:long[])</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>357</y>
+      <w>112</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enum&gt;&gt;
+ErrorCode
+-
+OK
+INPUT_NULL
+OUTPUT_NULL
+UNKNOWN_ERROR
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>301</x>
+      <y>952</y>
+      <w>280</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>FaceLocalisator
+-
++ErrorCode
+-
+_+haarcascades_detection(ref image:img): ErrorCode_
+_+landmark_detection(ref image:img):ErrorCode_
+_+frontalization(ref image:img):ErrorCode_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>952</y>
+      <w>280</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>ImageProcessor
+-
++ErrorCode
+-
+_+img2gray(ref image:img):ErrorCode_
+_+histogram_equalization(ref image:img):ErrorCode_
+_+adaptive_histogram_equalization(ref image:img):ErrorCode_
+_+gamma_correction(ref image:img): ErrorCode_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>868</y>
+      <w>217</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;120.0;290.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>868</y>
+      <w>203</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;120.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
