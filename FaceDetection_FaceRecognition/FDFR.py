@@ -2,3 +2,5 @@
 import cv2
 import theano
 import keras
+
+"""SETTINGS"""
