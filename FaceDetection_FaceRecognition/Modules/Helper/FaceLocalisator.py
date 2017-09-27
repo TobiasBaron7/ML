@@ -8,6 +8,10 @@ _cascadePath        = 'C:/opencv/data/haarcascades/'
 _face_cascade       = ''
 
 
+def _filter_faces(faces, num_of_faces):
+    pass
+
+
 def haarcascades_detection(img, num_of_faces=100, scaleFactor = 1.3, minNeighbors=5):
     """
     Uses OpenCV pre-trained haarcascade-classifier to detect faces in the given image.
@@ -32,7 +36,10 @@ def haarcascades_detection(img, num_of_faces=100, scaleFactor = 1.3, minNeighbor
     faces = _face_cascade.detectMultiScale(image=img, scaleFactor=scaleFactor, minNeighbors=minNeighbors)
 
     if faces.shape[0] < num_of_faces:
-        return faces
+        cropped_faces = list()
+        for x, y, w, h in faces:
+            cropped_faces.append(img[y:y+w, x:x+h])
+        return cropped_faces
 
     else:
         # TODO reduce number of faces  (take biggest ones/ nearest to center/...)
