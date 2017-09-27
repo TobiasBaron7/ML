@@ -8,7 +8,7 @@ _log_changes = True
 # if clahe is used, save clahe-object globally to avoid re-instantiating at every call
 _clahe          = ''
 _cliplimit      = 2.0
-_tileGridSize   = (8, 8)
+_tile_grid_size   = (8, 8)
 
 # if gamma_correction is used, save lookup-table to avoid re-computing at every call
 _gamma_lut  = np.empty([0])
@@ -35,7 +35,7 @@ def histogram_equalization(img):
     return cv2.equalizeHist(img)
 
 
-def clahe(img, cliplimit=2.0, tileGridSize=(8, 8)):
+def clahe(img, cliplimit=2.0, tile_grid_size=(8, 8)):
     """
     CLAHE: Contrast Linmited Adaptive Histogram Equalization
     The image is divided into small blocks called "tiles".
@@ -47,25 +47,25 @@ def clahe(img, cliplimit=2.0, tileGridSize=(8, 8)):
 
     :param img:             grayscale image
     :param cliplimit:       contrast limit of each bin
-    :param tileGridSize:    height x width of area
+    :param tile_grid_size:    height x width of area
     :return:                grayscale image with clahe applied
     """
-    global _log_changes, _clahe, _cliplimit, _tileGridSize
+    global _log_changes, _clahe, _cliplimit, _tile_grid_size
 
     if not _clahe:
-        _clahe          = cv2.createCLAHE(clipLimit=cliplimit, tileGridSize=tileGridSize)
+        _clahe          = cv2.createCLAHE(clipLimit=cliplimit, tileGridSize=tile_grid_size)
         _cliplimit      = cliplimit
-        _tileGridSize   = tileGridSize
+        _tile_grid_size   = tile_grid_size
 
     # create new clahe object if function is called with different parameters than before
-    if _cliplimit is not cliplimit or _tileGridSize is not tileGridSize:
+    if _cliplimit is not cliplimit or _tile_grid_size is not tile_grid_size:
         if _log_changes:
             print('ImageProcessor: clahen - parameters changed\n'
                   + 'cliplimit: %s -> %s\n' % (str(_cliplimit), str(cliplimit))
-                  + 'tileGridSize %s -> %s' % (str(_tileGridSize), str(tileGridSize)))
-        _clahe          = cv2.createCLAHE(clipLimit=cliplimit, tileGridSize=tileGridSize)
+                  + 'tileGridSize %s -> %s' % (str(_tile_grid_size), str(tile_grid_size)))
+        _clahe          = cv2.createCLAHE(clipLimit=cliplimit, tileGridSize=tile_grid_size)
         _cliplimit      = cliplimit
-        _tileGridSize   = tileGridSize
+        _tile_grid_size   = tile_grid_size
 
     return _clahe.apply(img)
 

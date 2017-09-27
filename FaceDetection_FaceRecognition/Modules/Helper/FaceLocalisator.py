@@ -8,18 +8,14 @@ _cascadePath        = 'C:/opencv/data/haarcascades/'
 _face_cascade       = ''
 
 
-def _filter_faces(faces, num_of_faces):
-    pass
-
-
-def haarcascades_detection(img, num_of_faces=100, scaleFactor = 1.3, minNeighbors=5):
+def haarcascades_detection(img, max_faces=100, scale_factor = 1.3, min_neighbors=5):
     """
     Uses OpenCV pre-trained haarcascade-classifier to detect faces in the given image.
 
     :param img:             image, in which to search for faces
-    :param num_of_faces:    max number of faces returned, default is 100
-    :param scaleFactor:     specifies how much the image size is reduced at each image scale
-    :param minNeighbours:   specifies how many neighbors each candidate rectangle should have to retain it
+    :param max_faces:    max number of faces returned, default is 100
+    :param scale_factor:     specifies how much the image size is reduced at each image scale
+    :param min_neighbors:   specifies how many neighbors each candidate rectangle should have to retain it
     :return:                list of rectangular faces
     """
     global _face_cascade
@@ -33,9 +29,9 @@ def haarcascades_detection(img, num_of_faces=100, scaleFactor = 1.3, minNeighbor
                 'ERROR: Modules.Helper.FaceLocalisator: Failed to load haarcascades_frontalface_default.xml from ' + _cascadePath)
             sys.exit(0)
 
-    faces = _face_cascade.detectMultiScale(image=img, scaleFactor=scaleFactor, minNeighbors=minNeighbors)
+    faces = _face_cascade.detectMultiScale(image=img, scaleFactor=scale_factor, minNeighbors=min_neighbors)
 
-    if faces.shape[0] < num_of_faces:
+    if faces.shape[0] < max_faces:
         cropped_faces = list()
         for x, y, w, h in faces:
             cropped_faces.append(img[y:y+w, x:x+h])
