@@ -10,7 +10,7 @@ _face_cascade       = ''
 _dlib_detector      = ''
 
 
-def select_n_faces(face_list, n):
+def _select_n_faces(face_list, n):
     """
     Select n biggest faces of given face_list and remove the rest.
     Size is calculated by width + length.
@@ -54,7 +54,7 @@ def haarcascades_detection(img, max_faces=100, scale_factor=1.3, min_neighbors=5
         face_list.append(img[y:y+w, x:x+h])
 
     if faces.shape[0] > max_faces:
-        select_n_faces(face_list, max_faces)
+        _select_n_faces(face_list, max_faces)
 
     return face_list
 
@@ -88,6 +88,6 @@ def hog_detection(img, max_faces=100, up_sampling=1):
         face_list.append(img[face.top():face.bottom(), face.left():face.right()])
 
     if len(faces) > max_faces:
-        select_n_faces(face_list, max_faces)
+        _select_n_faces(face_list, max_faces)
 
     return face_list

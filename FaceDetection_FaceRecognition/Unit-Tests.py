@@ -1,23 +1,35 @@
 import cv2
 import Modules.Helper.ImageProcessor as ip
 import Modules.Helper.FaceLocalisator as fl
+import Modules.Helper.FaceOperator as fo
 
 # General settings
-image_path                = 'data/test/family.jpg'
+image_path                = 'data/test/happy.jfif'
 
 # Test-Settings
 # define which module to test
+
+#ImageProcessor
 test_ImageProcessor     = False
 gamma                   = 3
 cliplimit               = 20.0
 tile_grid_size          = (8, 8)
 
-test_FaceLocalisator     = True
-method_to_test           = 0    # 0=haarcascades, 1=HOG
-scale_factor             = 1.25
-min_neighbors            = 4
-max_faces                = 3
-up_sampling              = 0
+#FaceLocalisator
+test_FaceLocalisator    = False
+method_haarcascades     = False
+method_hog              = False
+scale_factor            = 1.25
+min_neighbors           = 4
+max_faces               = 3
+up_sampling             = 0
+
+#FaceOperator
+test_FaceOperator       = True
+method_getLandmarks     = True
+method_scale            = False
+method_frontalize       = False
+
 
 
 # TEST ImageProcessor
@@ -47,12 +59,13 @@ if test_ImageProcessor:
 
 
 # TEST FaceLocalisator
+# methods: haarcascades_detection(), hog_detection()
 if test_FaceLocalisator:
     img_rgb = cv2.imread(image_path)
     img_gray = ip.img2gray(img_rgb)
 
     # OpenCV haarcascades
-    if method_to_test is 0:
+    if method_haarcascades:
         faces = fl.haarcascades_detection(img_gray,
                                           scale_factor=scale_factor,
                                           min_neighbors=min_neighbors,
@@ -65,7 +78,7 @@ if test_FaceLocalisator:
             counter += 1
 
     # dlib histogram of orientated gradients
-    if method_to_test is 1:
+    if method_hog:
         faces = fl.hog_detection(img_gray,
                                  max_faces=max_faces,
                                  up_sampling=up_sampling)
@@ -75,6 +88,23 @@ if test_FaceLocalisator:
             cv2.imshow('face ' + str(counter), face)
             counter += 1
 
+
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+
+
+# Test FaceOperator
+# methods: get_landmarks(), scale(), frontalize()
+if test_FaceOperator:
+    img_rgb = cv2.imread(image_path)
+    img_gray = ip.img2gray(img_rgb)
+    face = fl.hog_detection(img_gray)[0]
+
+    if method_getLandmarks:
+        landmarks = fo.get_landmarks(face)
+        for i in range(1, 68):
+            cv2.circle(face, (landmarks.part(i).x, landmarks.part(i).y), 1, (0, 0, 255), thickness=2)
+        cv2.imshow('', face)
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
