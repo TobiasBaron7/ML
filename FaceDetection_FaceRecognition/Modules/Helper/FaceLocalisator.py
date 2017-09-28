@@ -4,12 +4,10 @@ import dlib
 
 # path to openCV haarcascade and dlib files - CHANGE WITH CAUTION
 _cascadePath        = 'C:/opencv/data/haarcascades/'
-_dlib_path          = 'C:\dlib\shape_predictor_68_face_landmarks.dat'
 
 # load objects only if needed
 _face_cascade       = ''
 _dlib_detector      = ''
-_dlib_predictor     = ''
 
 
 def select_n_faces(face_list, n):
@@ -73,16 +71,12 @@ def hog_detection(img, max_faces=100, up_sampling=1):
     :param up_sampling: number of times image is up-sampled
     :return:            list of rectangular faces or empty list if none found
     """
-    global _dlib_path, _dlib_detector, _dlib_predictor
+    global _dlib_detector
 
-    if not _dlib_detector and not _dlib_predictor:
+    if not _dlib_detector:
         _dlib_detector  = dlib.get_frontal_face_detector()
-        _dlib_predictor = dlib.shape_predictor(_dlib_path)
 
-        if not _dlib_detector or not _dlib_predictor:
-            if not _dlib_predictor:
-                print('ERROR: Modules.FaceLocalisator: Failed to load dlib predictor from path', _dlib_path)
-                sys.exit(0)
+        if not _dlib_detector:
             if not _dlib_detector:
                 print('ERROR: Modules.FaceLocalisator: Failed to instantiate dlib detector.')
                 sys.exit(0)
