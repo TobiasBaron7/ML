@@ -4,18 +4,18 @@ import Modules.Helper.FaceLocalisator as fl
 import Modules.Helper.FaceOperator as fo
 
 # General settings
-image_path                = 'data/test/happy.jfif'
+image_path                = 'data/test/side/side1.jpg'
 
 # Test-Settings
 # define which module to test
 
-#ImageProcessor
+# ImageProcessor
 test_ImageProcessor     = False
 gamma                   = 3
 cliplimit               = 20.0
 tile_grid_size          = (8, 8)
 
-#FaceLocalisator
+# FaceLocalisator
 test_FaceLocalisator    = False
 method_haarcascades     = False
 method_hog              = False
@@ -24,12 +24,13 @@ min_neighbors           = 4
 max_faces               = 3
 up_sampling             = 0
 
-#FaceOperator
+# FaceOperator
 test_FaceOperator       = True
 method_getLandmarks     = True
-method_scale            = False
+method_scale            = True
 method_frontalize       = False
-
+scale_width             = 128
+scale_height            = 128
 
 
 # TEST ImageProcessor
@@ -88,13 +89,12 @@ if test_FaceLocalisator:
             cv2.imshow('face ' + str(counter), face)
             counter += 1
 
-
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 
 # Test FaceOperator
-# methods: get_landmarks(), scale(), frontalize()
+# methods: get_landmarks(), scale(), frontalization()
 if test_FaceOperator:
     img_rgb = cv2.imread(image_path)
     img_gray = ip.img2gray(img_rgb)
@@ -102,9 +102,14 @@ if test_FaceOperator:
 
     if method_getLandmarks:
         landmarks = fo.get_landmarks(face)
-        for i in range(1, 68):
-            cv2.circle(face, (landmarks.part(i).x, landmarks.part(i).y), 1, (0, 0, 255), thickness=2)
-        cv2.imshow('', face)
+        for l in landmarks.parts():
+            cv2.circle(face, (l.x, l.y), 1, (0, 0, 255), thickness=2)
+        if not method_scale:
+            cv2.imshow('', face)
+
+    if method_scale:
+        img_scaled = fo.scale(face, scale_width, scale_height)
+        cv2.imshow('', img_scaled)
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
