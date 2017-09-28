@@ -82,8 +82,10 @@ def hog_detection(img, max_faces=100, up_sampling=1):
         if not _dlib_detector or not _dlib_predictor:
             if not _dlib_predictor:
                 print('ERROR: Modules.FaceLocalisator: Failed to load dlib predictor from path', _dlib_path)
+                sys.exit(0)
             if not _dlib_detector:
                 print('ERROR: Modules.FaceLocalisator: Failed to instantiate dlib detector.')
+                sys.exit(0)
 
     faces = _dlib_detector(img, up_sampling)
 
