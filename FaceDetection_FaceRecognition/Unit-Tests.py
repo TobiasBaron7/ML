@@ -3,7 +3,7 @@ import Modules.Helper.ImageProcessor as ip
 import Modules.Helper.FaceLocalisator as fl
 
 # General settings
-image_path              = 'data/test/side/side7.jpg'
+image_path                = 'data/test/family.jpg'
 
 # Test-Settings
 # define which module to test
@@ -12,10 +12,12 @@ gamma                   = 3
 cliplimit               = 20.0
 tile_grid_size          = (8, 8)
 
-test_FaceLocalisator    = True
+test_FaceLocalisator     = True
+method_to_test           = 0    # 0=haarcascades, 1=HOG
 scale_factor             = 1.25
 min_neighbors            = 4
-max_faces                = 100
+max_faces                = 3
+up_sampling              = 0
 
 
 # TEST ImageProcessor
@@ -49,16 +51,30 @@ if test_FaceLocalisator:
     img_rgb = cv2.imread(image_path)
     img_gray = ip.img2gray(img_rgb)
 
-    faces = fl.haarcascades_detection(img_gray,
-                                      scale_factor=scale_factor,
-                                      min_neighbors=min_neighbors,
-                                      max_faces=max_faces)
+    # OpenCV haarcascades
+    if method_to_test is 0:
+        faces = fl.haarcascades_detection(img_gray,
+                                          scale_factor=scale_factor,
+                                          min_neighbors=min_neighbors,
+                                          max_faces=max_faces)
 
-    counter = 0
-    for face in faces:
-        cv2.namedWindow('face ' + str(counter), cv2.WINDOW_NORMAL)
-        cv2.imshow('face ' + str(counter), face)
-        counter += 1
+        counter = 0
+        for face in faces:
+            cv2.namedWindow('face ' + str(counter), cv2.WINDOW_NORMAL)
+            cv2.imshow('face ' + str(counter), face)
+            counter += 1
+
+    # dlib histogram of orientated gradients
+    if method_to_test is 1:
+        faces = fl.hog_detection(img_gray,
+                                 max_faces=max_faces,
+                                 up_sampling=up_sampling)
+        counter = 0
+        for face in faces:
+            cv2.namedWindow('face ' + str(counter), cv2.WINDOW_AUTOSIZE)
+            cv2.imshow('face ' + str(counter), face)
+            counter += 1
+
+
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-
