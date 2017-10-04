@@ -25,12 +25,12 @@ max_faces               = 3
 up_sampling             = 0
 
 # FaceOperator
-test_FaceOperator       = True
-method_getLandmarks     = True
+test_FaceOperator       = False
+method_getLandmarks     = False
 method_scale            = True
 method_frontalize       = False
-scale_width             = 128
-scale_height            = 128
+scale_width             = 256
+scale_height            = scale_width
 
 
 # TEST ImageProcessor
@@ -109,7 +109,9 @@ if test_FaceOperator:
 
     if method_scale:
         img_scaled = fo.scale(face, scale_width, scale_height)
+        img_scaled = fo.equalize_background(img_scaled)
         cv2.imshow('', img_scaled)
 
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+

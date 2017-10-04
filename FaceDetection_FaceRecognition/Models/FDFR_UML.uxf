@@ -4,7 +4,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1410</x>
+      <x>1310</x>
       <y>900</y>
       <w>570</w>
       <h>170</h>
@@ -24,7 +24,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
+      <x>440</x>
       <y>900</y>
       <w>390</w>
       <h>350</h>
@@ -48,7 +48,7 @@ int:face_out_height):extractedFaces[]
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2270</x>
+      <x>2170</x>
       <y>900</y>
       <w>470</w>
       <h>160</h>
@@ -66,7 +66,7 @@ int:face_out_height):extractedFaces[]
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1540</x>
+      <x>1440</x>
       <y>430</y>
       <w>300</w>
       <h>330</h>
@@ -91,7 +91,7 @@ int:face_out_height)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2220</x>
+      <x>2120</x>
       <y>380</y>
       <w>200</w>
       <h>190</h>
@@ -107,7 +107,7 @@ K_NEAREST_NEIGHBOURS
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2240</x>
+      <x>2140</x>
       <y>630</y>
       <w>180</w>
       <h>200</h>
@@ -123,7 +123,7 @@ WEIGHTED_X_SQUARE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2090</x>
+      <x>1990</x>
       <y>150</y>
       <w>290</w>
       <h>190</h>
@@ -132,7 +132,7 @@ WEIGHTED_X_SQUARE</panel_attributes>
 ImageProcessingModes
 -
 HISTOGRAM_EQUALIZATION
-ADAPTIVE_HISTOGRAM_EQUALIZATION
+CLAHE
 GAMMA_CORRECTION
 FRONTALIZATION
 </panel_attributes>
@@ -141,7 +141,7 @@ FRONTALIZATION
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1590</x>
+      <x>1490</x>
       <y>0</y>
       <w>210</w>
       <h>300</h>
@@ -171,7 +171,7 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1690</x>
+      <x>1590</x>
       <y>290</y>
       <w>30</w>
       <h>160</h>
@@ -182,7 +182,7 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
+      <x>640</x>
       <y>750</y>
       <w>960</w>
       <h>170</h>
@@ -193,7 +193,7 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1670</x>
+      <x>1570</x>
       <y>750</y>
       <w>820</w>
       <h>170</h>
@@ -204,7 +204,7 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1670</x>
+      <x>1570</x>
       <y>750</y>
       <w>30</w>
       <h>170</h>
@@ -215,7 +215,7 @@ FRONTALIZATION
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1900</x>
+      <x>1800</x>
       <y>590</y>
       <w>290</w>
       <h>180</h>
@@ -224,14 +224,14 @@ FRONTALIZATION
 FaceLocalisationModes
 -
 HAARCASCADES_FACE_PRE_TRAINED
-DLIB_LANDMARKS_PRE_TRAINED
+HOG_PRE_TRAINED
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1910</x>
+      <x>1810</x>
       <y>390</y>
       <w>220</w>
       <h>180</h>
@@ -246,7 +246,7 @@ CNN_VGG_16_PRE_TRAINED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2320</x>
+      <x>2220</x>
       <y>1350</y>
       <w>370</w>
       <h>260</h>
@@ -261,7 +261,7 @@ _+get_citymap_dist(v1:long[], v2:long[]):ErrorCode_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1000</x>
+      <x>900</x>
       <y>510</y>
       <w>160</w>
       <h>200</h>
@@ -280,7 +280,7 @@ NO_FACE
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
+      <x>440</x>
       <y>1360</y>
       <w>400</w>
       <h>230</h>
@@ -296,7 +296,7 @@ _+hog_detection(image:img):image[]_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>960</x>
+      <x>860</x>
       <y>1360</y>
       <w>400</w>
       <h>230</h>
@@ -314,7 +314,7 @@ _+gamma_correction(image:img): image_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>730</x>
+      <x>630</x>
       <y>1240</y>
       <w>30</w>
       <h>140</h>
@@ -325,7 +325,7 @@ _+gamma_correction(image:img): image_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>730</x>
+      <x>630</x>
       <y>1240</y>
       <w>460</w>
       <h>140</h>
@@ -336,7 +336,7 @@ _+gamma_correction(image:img): image_</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1210</x>
+      <x>1110</x>
       <y>150</y>
       <w>290</w>
       <h>120</h>
@@ -350,7 +350,7 @@ Settings made through variables in FDFR</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>750</x>
+      <x>650</x>
       <y>560</y>
       <w>200</w>
       <h>90</h>
@@ -364,7 +364,7 @@ Instead maybe just raise?</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2500</x>
+      <x>2400</x>
       <y>1050</y>
       <w>30</w>
       <h>320</h>
@@ -375,7 +375,7 @@ Instead maybe just raise?</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1820</x>
+      <x>1720</x>
       <y>20</y>
       <w>140</w>
       <h>70</h>
@@ -389,7 +389,7 @@ new person to DB</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
+      <x>30</x>
       <y>1360</y>
       <w>390</w>
       <h>200</h>
@@ -401,13 +401,14 @@ new person to DB</panel_attributes>
 _+frontalization(image:img):image_
 _+scale(image:img, int:width, int:height):image_
 _+get_landmarks(image:img):point[]_
+_+equalize_background(image:img):image_
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
+      <x>180</x>
       <y>1240</y>
       <w>480</w>
       <h>140</h>

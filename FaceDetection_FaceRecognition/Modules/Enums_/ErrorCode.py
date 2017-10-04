@@ -1,7 +1,4 @@
-import enum
-
-
-class ErrorCode(enum):
+class ErrorCode:
     OK                  = 0
     INPUT_NULL          = 1
     OUTPUT_NULL         = 2

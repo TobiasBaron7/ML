@@ -1,5 +1,7 @@
 import dlib
 import sys
+import cv2
+from skimage import filters
 
 
 _dlib_path          = 'C:\dlib\shape_predictor_68_face_landmarks.dat'
@@ -28,15 +30,33 @@ def get_landmarks(img):
     return _dlib_predictor(img, area_of_interest)
 
 
+def scale(img, width, height):
+    """
+    Scales the given image to fit given width and height.
 
+    :param img:     original image
+    :param width:   new width in pixels
+    :param height:  new height in pixels
+    :return:        scaled image
+    """
+    if not width and not height:
+        return
+    if not width:
+        width = height
+    if not height:
+        height = width
 
-
-# TODO
-def scale():
-    pass
+    return cv2.resize(img, (width, height))
 
 
 # TODO
 def frontalization():
     pass
+
+
+# TODO
+def equalize_background(img):
+    return cv2.Canny(img, 30, 200)
+
+
 

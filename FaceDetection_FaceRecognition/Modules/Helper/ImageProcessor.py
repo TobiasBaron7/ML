@@ -3,12 +3,12 @@ import cv2
 
 
 # prints changes in settings at function calls
-_log_changes = True
+_log_changes = False
 
 # if clahe is used, save clahe-object globally to avoid re-instantiating at every call
 _clahe          = ''
 _cliplimit      = 2.0
-_tile_grid_size   = (8, 8)
+_tile_grid_size = (8, 8)
 
 # if gamma_correction is used, save lookup-table to avoid re-computing at every call
 _gamma_lut  = np.empty([0])
@@ -47,10 +47,15 @@ def clahe(img, cliplimit=2.0, tile_grid_size=(8, 8)):
 
     :param img:             grayscale image
     :param cliplimit:       contrast limit of each bin
-    :param tile_grid_size:    height x width of area
+    :param tile_grid_size:  height x width of area
     :return:                grayscale image with clahe applied
     """
     global _log_changes, _clahe, _cliplimit, _tile_grid_size
+
+    if not cliplimit:
+        cliplimit       = 2.0
+    if not tile_grid_size:
+        tile_grid_size  = (8, 8)
 
     if not _clahe:
         _clahe          = cv2.createCLAHE(clipLimit=cliplimit, tileGridSize=tile_grid_size)
@@ -81,6 +86,9 @@ def gamma_correction(img, gamma=1.0):
     """
     global _log_changes, _gamma_lut, _gamma
 
+    if not gamma:
+        gamma = 1.0
+
     inv_gamma = 1.0 / gamma
     # create a lookup-table with 256 entries (index=0,...,255)
     # with table[x] = ((x/255)^inv_gamma) * 255
@@ -107,5 +115,16 @@ SETTER
 
 
 def set_log_changes(b):
+    """
+    Defines weather logs should be printed or not.
+    Default is False.
+
+    :param b: True=logs printed, False=no logs
+    """
     global _log_changes
-    _log_changes = b
+
+    # do not use _log_changes = b as b can be anything like a 2GB object
+    if b:
+        _log_changes = True
+    else:
+        _log_changes = False

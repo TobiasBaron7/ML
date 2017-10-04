@@ -35,6 +35,13 @@ def haarcascades_detection(img, max_faces=100, scale_factor=1.3, min_neighbors=5
     """
     global _face_cascade
 
+    if not max_faces:
+        max_faces = 100
+    if not scale_factor:
+        scale_factor = 1.3
+    if not min_neighbors:
+        min_neighbors = 5
+
     if not _face_cascade:
         _face_cascade = cv2.CascadeClassifier(_cascadePath + 'haarcascade_frontalface_default.xml')
 
@@ -72,6 +79,11 @@ def hog_detection(img, max_faces=100, up_sampling=1):
     :return:            list of rectangular faces or empty list if none found
     """
     global _dlib_detector
+
+    if not max_faces:
+        max_faces = 100
+    if not up_sampling:
+        up_sampling = 1
 
     if not _dlib_detector:
         _dlib_detector  = dlib.get_frontal_face_detector()

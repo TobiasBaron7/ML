@@ -5,17 +5,24 @@ from keras.optimizers import SGD
 from keras import backend
 import cv2
 import numpy as np
+import keras
+import sys
 
 
 def VGG_16(weights_path=None):
-    # model = keras.applications.vgg16.VGG16(include_top=True, weights='imagenet', input_tensor=None, input_shape=None, pooling=None, classes=1000)
+    # model = keras.applications.VGG16(include_top=False,
+    #                                 weights='imagenet',
+    #                                 input_tensor=None,
+    #                                 input_shape=(3, 224, 224),
+    #                                 pooling='avg')
     # return model
+
     model = Sequential()
     model.add(ZeroPadding2D((1, 1), input_shape=(3, 224, 224)))
     model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(ZeroPadding2D((1,1)))
+    model.add(ZeroPadding2D((1, 1)))
     model.add(Conv2D(64, (3, 3), activation='relu'))
-    model.add(MaxPooling2D((2, 2), strides=(2,2)))
+    model.add(MaxPooling2D((2, 2), strides=(2, 2)))
 
     model.add(ZeroPadding2D((1, 1)))
     model.add(Conv2D(128, (3, 3), activation='relu'))
