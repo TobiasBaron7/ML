@@ -1,4 +1,6 @@
 **/FaceDetection_FaceRecognition/data
+**/FaceDetection_FaceRecognition/.idea
 *.jpg
 *.jfif
 *.pgm
+*.pyc
