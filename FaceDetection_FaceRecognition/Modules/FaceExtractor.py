@@ -1,9 +1,9 @@
-from Helper import ImageProcessor
-from Helper import FaceLocalisator
-from Helper import FaceOperator
+from Modules.Helper import ImageProcessor
+from Modules.Helper import FaceLocalisator
+from Modules.Helper import FaceOperator
 
-from Enums import FaceLocalisationModes
-from Enums import ImageProcessingModes
+from Modules.Enums import FaceLocalisationModes
+from Modules.Enums import ImageProcessingModes
 
 
 def _image_processing(img, processing_methods):
@@ -55,7 +55,7 @@ def _image_processing(img, processing_methods):
             img = ImageProcessor.img2gray(img)
 
         elif ImageProcessingModes.HISTOGRAM_EQUALIZATION in process:
-            img = ImageProcessor.img2gray(img)
+            img = ImageProcessor.histogram_equalization(img)
 
         else:
             print('WARNING: FaceExtractor._image_processing(): processing method unknown:\n', process)
@@ -116,6 +116,26 @@ def _face_localization(img, localization_method):
 
 def extract_faces(img, pre_processing_methods, localization_method,
                   post_processing_methods, face_out_size=(224, 224)):
+    """
+    Takes given image and applies all given pre-processing steps before
+    it tries to find all faces on this image using given method.
+    If no face is found, post-processing steps are applied if given and
+    face localization is tried again.
+    If the number of faces exceeds the given number of max_faces,
+    the list of faces is cut down to fit this maximum number of faces.
+    This is done by removing the smallest faces from the list until the given number is reached,
+    as smaller faces are considered less important.
+    Finally the remaining list of faces is resized to given output size and returned.
+
+
+    :param img:                         rgb/grayscale image
+    :param pre_processing_methods:      array of pre-processing methods with relevant parameters
+    :param localization_method:         array with one element of used localization method and appropriate parameters
+    :param post_processing_methods:     array of post-processing methods with relevant parameters
+    :param face_out_size:               tuple of (width, height), defines output size of each face
+    :return:                            list of grayscale faces found on the image, resized to given size and
+                                        manipulated with all given processing steps
+    """
     # PRE PROCESSING
     img = _image_processing(img, pre_processing_methods)
 
@@ -127,7 +147,7 @@ def extract_faces(img, pre_processing_methods, localization_method,
         img     = _image_processing(img, post_processing_methods)
         faces   = _face_localization(img, localization_method)
 
-    # NO FACE FOUND, RETUN NONE
+    # NO FACE FOUND, RETURN NONE
     if len(faces) < 1:
         return None
 
@@ -138,6 +158,3 @@ def extract_faces(img, pre_processing_methods, localization_method,
             faces_resized.append(FaceOperator.scale(face, face_out_size[0], face_out_size[1]))
         return faces_resized
 
-
-if __name__ == '__main__':
-    pass

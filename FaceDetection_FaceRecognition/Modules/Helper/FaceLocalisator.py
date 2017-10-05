@@ -54,6 +54,7 @@ def haarcascades_detection(img, max_faces=100, scale_factor=1.3, min_neighbors=5
     faces = _face_cascade.detectMultiScale(image=img,
                                            scaleFactor=scale_factor,
                                            minNeighbors=min_neighbors)
+    print(len(faces), 'faces detected')
 
     # crop faces out of image and append to list
     face_list = list()
@@ -89,11 +90,11 @@ def hog_detection(img, max_faces=100, up_sampling=1):
         _dlib_detector  = dlib.get_frontal_face_detector()
 
         if not _dlib_detector:
-            if not _dlib_detector:
-                print('ERROR: Modules.FaceLocalisator: Failed to instantiate dlib detector.')
-                sys.exit(0)
+            print('ERROR: Modules.FaceLocalisator: Failed to instantiate dlib detector.')
+            sys.exit(0)
 
     faces = _dlib_detector(img, up_sampling)
+    print(len(faces), 'faces detected')
 
     face_list = list()
     for face in faces:
