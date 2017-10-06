@@ -71,6 +71,7 @@ if __name__ == '__main__':
     elif method_face_localization is Fl.HAARCASCADES_FACE_PRE_TRAINED:
         localization_method = [{method_face_localization: {'scale_factor': scale_factor, 'max_faces': max_faces}}]
 
+    FE.set_logging(True)
     faces = FE.extract_faces(img, pre_processing_methods, localization_method, post_processing_methods, face_out_size)
 
     face_counter = 0
