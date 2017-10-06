@@ -6,6 +6,10 @@ from Modules.Enums import FaceLocalisationModes
 from Modules.Enums import ImageProcessingModes
 
 
+# specifies if actions and times should be logged or not
+_is_logging = False
+
+
 def _image_processing(img, processing_methods):
     """
     Given an array of dicts with method-name and method-parameters this function
@@ -24,6 +28,8 @@ def _image_processing(img, processing_methods):
     for process in processing_methods:
 
         if ImageProcessingModes.CLAHE in process:
+            if _is_logging:
+                print('ImageProcessor: CLAHE')
             cliplimit       = None
             tile_grid_size  = None
             try:
@@ -40,9 +46,12 @@ def _image_processing(img, processing_methods):
 
         # TODO
         elif ImageProcessingModes.FRONTALIZATION in process:
-            print('frontalize')
+            if _is_logging:
+                print('ImageProcessor: frontalization')
 
         elif ImageProcessingModes.GAMMA_CORRECTION in process:
+            if _is_logging:
+                print('ImageProcessor: gamma correction')
             gamma = None
             try:
                 gamma = process[ImageProcessingModes.GAMMA_CORRECTION]['gamma']
@@ -52,9 +61,13 @@ def _image_processing(img, processing_methods):
                                                   gamma=gamma)
 
         elif ImageProcessingModes.GRAYSCALE_CONVERTION in process:
+            if _is_logging:
+                print('ImageProcessor: grayscale convertion')
             img = ImageProcessor.img2gray(img)
 
         elif ImageProcessingModes.HISTOGRAM_EQUALIZATION in process:
+            if _is_logging:
+                print('ImageProcessor: histogram equalization')
             img = ImageProcessor.histogram_equalization(img)
 
         else:
@@ -75,6 +88,8 @@ def _face_localization(img, localization_method):
     :return:                        list of faces
     """
     if FaceLocalisationModes.HAARCASCADES_FACE_PRE_TRAINED in localization_method[0]:
+        if _is_logging:
+            print('FaceLocalization: haarcascades')
         scale_factor    = None
         min_neighbors   = None
         max_faces       = None
@@ -97,6 +112,8 @@ def _face_localization(img, localization_method):
                                                       max_faces=max_faces)
 
     elif FaceLocalisationModes.HOG_PRE_TRAINED in localization_method[0]:
+        if _is_logging:
+            print('FaceLocalization: HoG')
         max_faces   = None
         up_sampling = None
         try:
@@ -136,19 +153,45 @@ def extract_faces(img, pre_processing_methods, localization_method,
     :return:                            list of grayscale faces found on the image, resized to given size and
                                         manipulated with all given processing steps
     """
+    start_time = ''
+    if _is_logging:
+        import time
+        print('STARTING FACE EXTRACTION')
+        start_time = time.time()
+        total_time = time.time()
+
     # PRE PROCESSING
     img = _image_processing(img, pre_processing_methods)
+    if _is_logging:
+        print('pre-processing:\t\t', time.time() - start_time, 's')
+        start_time = time.time()
 
     # FACE LOCALISATION
     faces = _face_localization(img, localization_method)
+    if _is_logging:
+        print('first localisation:\t', time.time()-start_time, 's')
+        if len(faces) > 0:
+                print('second localization canceled')
+        start_time = time.time()
 
     # POST PROCESS IF NO FACE FOUND
     if len(faces) < 1:
         img     = _image_processing(img, post_processing_methods)
+        if _is_logging:
+            print('post-processing:\t\t:', time.time()-start_time, 's')
+            start_time = time.time()
         faces   = _face_localization(img, localization_method)
+        if _is_logging:
+            print('second localization:\t:', time.time() - start_time, 's')
+            start_time = time.time()
 
     # NO FACE FOUND, RETURN NONE
     if len(faces) < 1:
+        if _is_logging:
+            print('---------------\n'
+                  'no face found\n'
+                  'total time:', time.time()-total_time, 's',
+                  '\n---------------')
         return None
 
     # RESIZE FACES TO GIVEN SIZE AND RETURN
@@ -156,5 +199,24 @@ def extract_faces(img, pre_processing_methods, localization_method,
         faces_resized = list()
         for face in faces:
             faces_resized.append(FaceOperator.scale(face, face_out_size[0], face_out_size[1]))
+        if _is_logging:
+            print('resize faces:\t\t', time.time()-start_time, 's')
+            print('---------------\n'
+                  'faces found:', len(faces_resized),
+                  '\ntotal time:', time.time() - total_time, 's',
+                  '\n---------------')
         return faces_resized
 
+
+def set_logging(b):
+    """
+    True:   log actions and time
+    False:  do not log anything
+
+    :param b: boolean
+    """
+    global _is_logging
+    if b:
+        _is_logging = True
+    if not b:
+        _is_logging = False
