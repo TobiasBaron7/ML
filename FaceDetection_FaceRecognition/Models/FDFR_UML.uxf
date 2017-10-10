@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>5</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>875</x>
-      <y>465</y>
-      <w>285</w>
-      <h>85</h>
+      <x>1029</x>
+      <y>630</y>
+      <w>399</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>FaceFeature
 -
@@ -24,10 +24,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>465</y>
-      <w>220</w>
-      <h>165</h>
+      <x>420</x>
+      <y>630</y>
+      <w>308</w>
+      <h>231</h>
     </coordinates>
     <panel_attributes>FaceExtractor
 -
@@ -50,10 +50,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1305</x>
-      <y>465</y>
-      <w>235</w>
-      <h>80</h>
+      <x>1631</x>
+      <y>630</y>
+      <w>329</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>FaceIdentificator
 -
@@ -68,10 +68,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>940</x>
-      <y>230</y>
-      <w>150</w>
-      <h>165</h>
+      <x>1120</x>
+      <y>301</y>
+      <w>210</w>
+      <h>231</h>
     </coordinates>
     <panel_attributes>FDFR
 -
@@ -93,10 +93,10 @@ int:face_out_height)
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1280</x>
-      <y>205</y>
-      <w>100</w>
-      <h>95</h>
+      <x>1596</x>
+      <y>266</y>
+      <w>140</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 IdentificationModes
@@ -109,10 +109,10 @@ K_NEAREST_NEIGHBOURS
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1290</x>
-      <y>330</y>
-      <w>90</w>
-      <h>100</h>
+      <x>1610</x>
+      <y>441</y>
+      <w>126</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 DistanceModes
@@ -125,10 +125,10 @@ WEIGHTED_X_SQUARE</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1215</x>
-      <y>90</y>
-      <w>145</w>
-      <h>95</h>
+      <x>1505</x>
+      <y>105</y>
+      <w>203</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 ImageProcessingModes
@@ -143,10 +143,10 @@ FRONTALIZATION
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>965</x>
-      <y>15</y>
-      <w>105</w>
-      <h>150</h>
+      <x>1155</x>
+      <y>0</y>
+      <w>147</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>GUI
 -
@@ -173,10 +173,10 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1015</x>
-      <y>160</y>
-      <w>15</w>
-      <h>80</h>
+      <x>1225</x>
+      <y>203</y>
+      <w>21</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
@@ -184,10 +184,10 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>390</y>
-      <w>480</w>
-      <h>85</h>
+      <x>560</x>
+      <y>525</y>
+      <w>672</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;150.0;940.0;10.0</additional_attributes>
@@ -195,10 +195,10 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1005</x>
-      <y>390</y>
-      <w>410</w>
-      <h>85</h>
+      <x>1211</x>
+      <y>525</y>
+      <w>574</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>800.0;150.0;10.0;10.0</additional_attributes>
@@ -206,10 +206,10 @@ FRONTALIZATION
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1005</x>
-      <y>390</y>
-      <w>15</w>
-      <h>85</h>
+      <x>1211</x>
+      <y>525</y>
+      <w>21</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
@@ -217,10 +217,10 @@ FRONTALIZATION
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1120</x>
-      <y>310</y>
-      <w>145</w>
-      <h>90</h>
+      <x>1372</x>
+      <y>413</y>
+      <w>203</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 FaceLocalisationModes
@@ -233,10 +233,10 @@ HOG_PRE_TRAINED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1125</x>
-      <y>210</y>
-      <w>110</w>
-      <h>90</h>
+      <x>1379</x>
+      <y>273</y>
+      <w>154</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 FeatureExtractionModes
@@ -248,10 +248,10 @@ CNN_VGG_16_PRE_TRAINED
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1330</x>
-      <y>690</y>
-      <w>185</w>
-      <h>130</h>
+      <x>1666</x>
+      <y>945</y>
+      <w>259</w>
+      <h>182</h>
     </coordinates>
     <panel_attributes>DistanceMesaure
 -
@@ -263,10 +263,10 @@ _+get_citymap_dist(v1:long[], v2:long[]):ErrorCode_</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>270</y>
-      <w>80</w>
-      <h>100</h>
+      <x>742</x>
+      <y>357</y>
+      <w>112</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>&lt;&lt;enum&gt;&gt;
 ErrorCode
@@ -282,10 +282,10 @@ NO_FACE
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>345</x>
-      <y>690</y>
-      <w>320</w>
-      <h>120</h>
+      <x>287</x>
+      <y>945</y>
+      <w>448</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>FaceLocalisator
 -
@@ -300,10 +300,10 @@ _+hog_detection(image:img, int:max_faces, int:up_sampling):face_list_</panel_att
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>675</x>
-      <y>690</y>
-      <w>205</w>
-      <h>115</h>
+      <x>749</x>
+      <y>945</y>
+      <w>287</w>
+      <h>161</h>
     </coordinates>
     <panel_attributes>ImageProcessor
 -
@@ -323,10 +323,10 @@ _+gamma_correction(image:img, double:gamma): image_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>535</x>
-      <y>625</y>
-      <w>15</w>
-      <h>75</h>
+      <x>553</x>
+      <y>854</y>
+      <w>21</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
@@ -334,10 +334,10 @@ _+gamma_correction(image:img, double:gamma): image_</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>535</x>
-      <y>625</y>
-      <w>255</w>
-      <h>75</h>
+      <x>553</x>
+      <y>854</y>
+      <w>357</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>490.0;130.0;10.0;10.0</additional_attributes>
@@ -345,10 +345,10 @@ _+gamma_correction(image:img, double:gamma): image_</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>775</x>
-      <y>90</y>
-      <w>145</w>
-      <h>60</h>
+      <x>889</x>
+      <y>105</y>
+      <w>203</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Note..
 bg=yellow
@@ -359,10 +359,10 @@ Settings made through variables in FDFR</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>545</x>
-      <y>295</y>
-      <w>100</w>
-      <h>45</h>
+      <x>567</x>
+      <y>392</y>
+      <w>140</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>Note..
 bg=yellow
@@ -373,10 +373,10 @@ Instead maybe just raise?</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1420</x>
-      <y>540</y>
-      <w>15</w>
-      <h>160</h>
+      <x>1792</x>
+      <y>735</y>
+      <w>21</w>
+      <h>224</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;300.0;10.0;10.0</additional_attributes>
@@ -384,10 +384,10 @@ Instead maybe just raise?</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1080</x>
-      <y>25</y>
-      <w>70</w>
-      <h>35</h>
+      <x>1316</x>
+      <y>14</y>
+      <w>98</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>Note..
 bg=blue
@@ -398,10 +398,10 @@ new person to DB</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>140</x>
-      <y>690</y>
-      <w>195</w>
-      <h>100</h>
+      <x>0</x>
+      <y>945</y>
+      <w>273</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>FaceOperator
 -
@@ -418,10 +418,10 @@ _+equalize_background(image:img):image TODO_
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>215</x>
-      <y>625</y>
-      <w>335</w>
-      <h>75</h>
+      <x>105</x>
+      <y>854</y>
+      <w>469</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;130.0;650.0;10.0</additional_attributes>
