@@ -5,26 +5,27 @@
     <id>UMLClass</id>
     <coordinates>
       <x>680</x>
-      <y>330</y>
+      <y>360</y>
       <w>170</w>
-      <h>90</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>DB_Person
 -
 +Id:int
 +FirstName:varchar[32]
-+LastName:varchar[32]</panel_attributes>
++LastName:varchar[32]
++Subject:int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>420</x>
-      <y>500</y>
+      <x>480</x>
+      <y>540</y>
       <w>160</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>DP_FeatureVector
+    <panel_attributes>DB_FeatureVector
 -
 +Id:int
 +PersonID:int
@@ -34,24 +35,24 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>490</x>
-      <y>410</y>
-      <w>300</w>
+      <x>550</x>
+      <y>450</y>
+      <w>240</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 PersonID</panel_attributes>
-    <additional_attributes>280.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>220.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
-      <y>500</y>
+      <x>690</x>
+      <y>540</y>
       <w>160</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>DP_MeanVector
+    <panel_attributes>DB_MeanVector
 -
 +Id:int
 +PersonID:int
@@ -62,24 +63,24 @@ PersonID</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>410</y>
-      <w>110</w>
+      <x>760</x>
+      <y>450</y>
+      <w>90</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 PersonID</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>890</x>
-      <y>500</y>
+      <x>900</x>
+      <y>540</y>
       <w>160</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>DP_MedianVector
+    <panel_attributes>DB_MedianVector
 -
 +Id:int
 +PersonID:int
@@ -91,12 +92,41 @@ PersonID</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>760</x>
-      <y>410</y>
-      <w>230</w>
+      <y>450</y>
+      <w>240</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 PersonID</panel_attributes>
-    <additional_attributes>10.0;10.0;210.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;220.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>480</x>
+      <y>720</y>
+      <w>160</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>DB_Pose
+-
++Id:int
++FeatureVectorID:int
++Pose:int
++Lightning:varchar[16]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>550</x>
+      <y>640</y>
+      <w>130</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+FeatureVectorID</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
   </element>
 </diagram>
