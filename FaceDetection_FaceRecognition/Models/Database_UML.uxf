@@ -29,7 +29,8 @@
 -
 +Id:int
 +PersonID:int
-+FeatureVector:double[]</panel_attributes>
++FeatureVector:double[]
++L2Norm:double</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
