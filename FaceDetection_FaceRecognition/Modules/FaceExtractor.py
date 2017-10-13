@@ -8,6 +8,8 @@ from Modules.Enums import ImageProcessingModes
 
 # specifies if actions and times should be logged or not
 _is_logging = False
+# counts how often a face is found at second attempt
+_second_chance_counter  = 0
 
 
 def _image_processing(img, processing_methods):
@@ -43,11 +45,6 @@ def _image_processing(img, processing_methods):
             img = ImageProcessor.clahe(img,
                                        cliplimit=cliplimit,
                                        tile_grid_size=tile_grid_size)
-
-        # TODO
-        elif ImageProcessingModes.FRONTALIZATION in process:
-            if _is_logging:
-                print('ImageProcessor: frontalization')
 
         elif ImageProcessingModes.GAMMA_CORRECTION in process:
             if _is_logging:
@@ -153,7 +150,8 @@ def extract_faces(img, pre_processing_methods, localization_method,
     :return:                            list of grayscale faces found on the image, resized to given size and
                                         manipulated with all given processing steps
     """
-    start_time = ''
+    global _is_logging, _second_chance_counter
+    start_time = None
     if _is_logging:
         import time
         print('STARTING FACE EXTRACTION')
@@ -181,12 +179,16 @@ def extract_faces(img, pre_processing_methods, localization_method,
             print('post-processing:\t\t:', time.time()-start_time, 's')
             start_time = time.time()
         faces   = _face_localization(img, localization_method)
+        if len(faces) > 0:
+            print('INFO: Face found in second attempt')
+            _second_chance_counter += 1
         if _is_logging:
             print('second localization:\t:', time.time() - start_time, 's')
             start_time = time.time()
 
     # NO FACE FOUND, RETURN NONE
     if len(faces) < 1:
+        print('INFO: FaceExtractor: No face found!')
         if _is_logging:
             print('---------------\n'
                   'no face found\n'
@@ -220,3 +222,13 @@ def set_logging(b):
         _is_logging = True
     if not b:
         _is_logging = False
+
+
+def reset_second_chance_counter():
+    global _second_chance_counter
+    _second_chance_counter = 0
+
+
+def get_second_chance_counter():
+    global _second_chance_counter
+    return _second_chance_counter
