@@ -54,14 +54,14 @@ def haarcascades_detection(img, max_faces=100, scale_factor=1.3, min_neighbors=5
     faces = _face_cascade.detectMultiScale(image=img,
                                            scaleFactor=scale_factor,
                                            minNeighbors=min_neighbors)
-    print(len(faces), 'faces detected')
+    #print(len(faces), 'faces detected')
 
     # crop faces out of image and append to list
     face_list = list()
     for x, y, w, h in faces:
         face_list.append(img[y:y+w, x:x+h])
 
-    if faces.shape[0] > max_faces:
+    if len(faces) > max_faces:
         _select_n_faces(face_list, max_faces)
 
     return face_list
