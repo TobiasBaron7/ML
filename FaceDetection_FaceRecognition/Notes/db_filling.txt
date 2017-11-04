@@ -1,0 +1,10 @@
+Image Processing: CLAHE
+Detection:	Haarcascades
+
+Total time:      269.38014006614685 s
+Time/file:       0.46047887190794334 s
+
+Successful second attempts: 0
+Total faces added to DB: 7663
+Total of successful post-processing: 0
+Percentage of post-processing in DB: 0.0
