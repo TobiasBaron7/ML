@@ -129,7 +129,7 @@ def _face_localization(img, localization_method):
 
 
 def extract_faces(img, pre_processing_methods, localization_method,
-                  post_processing_methods, face_out_size=(224, 224)):
+                  post_processing_methods=False, face_out_size=(224, 224)):
     """
     Takes given image and applies all given pre-processing steps before
     it tries to find all faces on this image using given method.
@@ -173,7 +173,7 @@ def extract_faces(img, pre_processing_methods, localization_method,
         start_time = time.time()
 
     # POST PROCESS IF NO FACE FOUND
-    if len(faces) < 1:
+    if post_processing_methods and len(faces) < 1:
         img     = _image_processing(img, post_processing_methods)
         if _is_logging:
             print('post-processing:\t\t:', time.time()-start_time, 's')
