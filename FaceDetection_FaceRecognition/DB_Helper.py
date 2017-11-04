@@ -184,6 +184,7 @@ if __name__ == '__main__':
 
     # META
     face_counter            = 0     # counts number of faces added to database
+    no_face_counter         = 0     # counts number of times an image is not added to the database
     second_chance_counter   = 0     # counts the times, the post_processing succeeded to find another face
 
     # make database ready and open connection
@@ -238,9 +239,7 @@ if __name__ == '__main__':
                                                            {'scale_factor': scale_factor,
                                                             'min_neighbors': min_neighbors,
                                                             'max_faces': max_faces}}],
-                                                     [{Ip.GAMMA_CORRECTION:
-                                                           {'gamma': post_gamma}}],
-                                                     face_out_size)
+                                                     face_out_size=face_out_size)
                 # extract features of the face
                 if face_list and len(face_list) > 0:
                     # name is 'yaleB03_P06A+035E+40.jpg' -> extract 06
@@ -252,6 +251,9 @@ if __name__ == '__main__':
                     # save to database
                     insert_DB_FeatureVector(person_id, face_feature, pose, lightning)
                     face_counter += 1
+                else:
+                    no_face_counter += 1
+                print(totalImages,'left',  end='\r')
 
         time_folder = time.time()-time_folder
         print('\nSTATS FOLDER:', folder)
