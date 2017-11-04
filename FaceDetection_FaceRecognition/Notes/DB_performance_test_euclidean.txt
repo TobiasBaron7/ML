@@ -1,0 +1,36 @@
+Meta
+data: yale B (random 70% DB, 30% testing)
+Localization: haarcascades (scale_factor=1.3, min_neighbours=5)
+pre-processing: clahe (cliplimit=5, tile_grid_size=(8,8))
+post-processing: gamma (gamma=3)
+face_out_size:	(224, 224)
+
+FeatureExtraction: pre-trained VGG16, no top, outputs 4096 features
+
+
+--------------------------------------
+Method: take closest feature vector
+	as correct person
+
+Elapsed time: 9624.633632183075 s
+Time per img: 1.9640816326530612
+
+true-positives:  3261
+false-positives: 853
+false-negatives: 0
+
+avg_dist_true_pos: 0.6577210787550067
+avg_dist_false_pos: 0.7327572658225667
+--------------------------------------
+Method: euclidean dist with threshold < 0.6
+
+Elapsed time: 9111.842205524445 s
+Time per img: 1.8593877551020408
+
+true-positives:  1147
+false-positives: 693
+false-negatives: 2274
+
+avg_dist_true_pos: 0.5275717135892293
+avg_dist_false_pos: 0.5585315450058355
+avg_dist_false_negative: 0.8454982302591479
