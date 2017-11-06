@@ -15,21 +15,40 @@ def get_ready():
         _feature_vectors = db.select_all_featureVectors()
 
 
-def identify(v):
+def identify(v, distance='cosine'):
+    """
+    Compares given vector to all vectors in the database and returns the closest one
+    according to given distance-metric.
+
+    :param v:           input vector
+    :param distance:    distance-metric; supports: 'eudlidean', 'cosine'
+    :return:            database-row and distance to this row's vector;
+                        if not found row is None and distance is infinity
+    """
     global _feature_vectors
+
+    if not _feature_vectors:
+        get_ready()
 
     # identification
     # calc distance from v to each feature vector
-    min_d = 100
+    min_d = float('inf')
     r = None
-    for row in _feature_vectors:
-        # if distance == 'euclidean':
-            # d = euclidean(v, row[2])
-        d = cosine((1/norm(v))*v, (1/row[3])*row[2])
+    if distance is 'euclidean':
+        for row in _feature_vectors:
+            d = euclidean(v, row[2])
 
-        if d < min_d:
-            min_d = d
-            r = row
+            if d < min_d:
+                min_d = d
+                r = row
+    elif distance is 'cosine':
+        v = (1/norm(v))*v
+        for row in _feature_vectors:
+            d = cosine(v, (1/row[3])*row[2])
+
+            if d < min_d:
+                min_d = d
+                r = row
 
     return r, min_d
 
