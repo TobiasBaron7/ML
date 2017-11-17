@@ -1,0 +1,9 @@
+"C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\numpy\core\numeric.py", line 531
+return array(a, dtype, copy=False, order=order)
+a:               {'type': 'ndarray', 'value': 0.30000001192092896}
+dtype:  : float32
+order:   None
+--------------
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\backend\common.py", line 108, in cast_to_floatx
+    return np.asarray(x, dtype=_FLOATX)
+x:               {'type': 'ndarray', 'value': 0.30000001192092896}

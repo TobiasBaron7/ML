@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "faces.py", line 129, in <module>
+    cmd()
+  File "faces.py", line 96, in generate
+    batch_size=args.batch_size, extension=args.extension)
+  File "C:\Users\FinalFred\Documents\SourceTree-Projects\ML\Face_Generator\deconvfaces\faces\generate.py", line 654, in generate_from_yaml
+    model = load_model(model_path)
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\models.py", line 246, in load_model
+    model = model_from_config(model_config, custom_objects=custom_objects)
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\models.py", line 314, in model_from_config
+    return layer_module.deserialize(config, custom_objects=custom_objects)
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\layers\__init__.py", line 54, in deserialize
+    printable_module_name='layer')
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\utils\generic_utils.py", line 140, in deserialize_keras_object
+    list(custom_objects.items())))
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\engine\topology.py", line 2450, in from_config
+    process_layer(layer_data)
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\engine\topology.py", line 2419, in process_layer
+    custom_objects=custom_objects)
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\layers\__init__.py", line 54, in deserialize
+    printable_module_name='layer')
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\utils\generic_utils.py", line 142, in deserialize_keras_object
+    return cls.from_config(config['config'])
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\engine\topology.py", line 1242, in from_config
+    return cls(**config)
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\layers\advanced_activations.py", line 38, in __init__
+    self.alpha = K.cast_to_floatx(alpha)
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\keras\backend\common.py", line 108, in cast_to_floatx
+    return np.asarray(x, dtype=_FLOATX)
+  File "C:\toolkits\Anaconda3\envs\dlwin36\lib\site-packages\numpy\core\numeric.py", line 533, in asarray
+    return array(a, dtype, copy=False, order=order)
+TypeError: float() argument must be a string or a number, not 'dict'
