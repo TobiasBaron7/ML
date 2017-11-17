@@ -37,7 +37,7 @@ def histogram_equalization(img):
 
 def clahe(img, cliplimit=2.0, tile_grid_size=(8, 8)):
     """
-    CLAHE: Contrast Linmited Adaptive Histogram Equalization
+    CLAHE: Contrast Limited Adaptive Histogram Equalization
     The image is divided into small blocks called "tiles".
     Then each of these blocks are histogram equalized as usual.
     If noise is there, it will be amplified. To avoid this, contrast limiting is applied.
