@@ -1,0 +1,15 @@
+Generate:
+python faces.py generate -m output/FaceGen.YaleFaces.model.d5.adam.h5 -o test_output -f params/random.yaml
+
+-m: pfad zum trainierten model
+-o: wieder output directory (überschreibt vorhandene Daten, das hab ich auch geändert. Normal bricht alles ab, wenn der Ordner bereits existiert)
+
+
+Train:
+python faces.py train ExtendedYaleB --use-yalefaces -o output -e 100
+
+-train ExtendedYaleB: nimmt Ordner so wie er ist mit einem Unterordner pro Identität, wobei es genau die originalen
+Bezeichnungen braucht (Identität, Pose, Licht etc wird extrahiert über 'filename[7:12]' bspw.)
+-o output: speichert Model im Ordner 'output'
+-e 100: trainiert 100 epochen (100 ist auch default)
+
