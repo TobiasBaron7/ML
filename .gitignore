@@ -4,3 +4,11 @@
 *.jfif
 *.pgm
 *.pyc
+*.info
+Face_Generator/CVPR16-LargePoseFaceAlignment/
+Face_Generator/.idea/workspace.xml
+Face_Generator/.idea/modules.xml
+Face_Generator/.idea/misc.xml
+Face_Generator/.idea/Face_Generator.iml
+*.jpeg
+MoveIt.txt
