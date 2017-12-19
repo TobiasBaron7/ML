@@ -121,9 +121,9 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
 
 
 if __name__ == '__main__':
-    # take screenshot and shutdown when error occurs
+    # if True: take screenshot and shutdown when error occurs
     error_shutdown = False
-    # shutdown when test is done
+    # if True: shutdown when test is done
     finish_shutdown = False
 
     try:
