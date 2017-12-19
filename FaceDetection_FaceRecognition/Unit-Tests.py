@@ -4,7 +4,7 @@ import Modules.Helper.FaceLocalisator as fl
 import Modules.Helper.FaceOperator as fo
 
 # General settings
-image_path                = 'data/test/side/side1.jpg'
+image_path                = 'data/test/side/side7.jpg'
 
 # Test-Settings
 # define which module to test
@@ -16,8 +16,8 @@ cliplimit               = 20.0
 tile_grid_size          = (8, 8)
 
 # FaceLocalisator
-test_FaceLocalisator    = False
-method_haarcascades     = False
+test_FaceLocalisator    = True
+method_haarcascades     = True
 method_hog              = False
 scale_factor            = 1.25
 min_neighbors           = 4
