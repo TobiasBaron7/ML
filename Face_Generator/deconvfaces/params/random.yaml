@@ -2,7 +2,7 @@
 ---
 mode: random        # Use mode 'random' to produce random images
 
-constrained: False  # Unconstrain parameters, allowing "illegal" inputs.
+constrained: True   # Unconstrain parameters, allowing "illegal" inputs.
                     # Typically the inputs are constrained to unit length (or
                     # satisfy [sin(x) cos(x)] for orientation), but disabling
                     # this allows for some wild, unexpected generations.
@@ -10,4 +10,5 @@ constrained: False  # Unconstrain parameters, allowing "illegal" inputs.
 id_scale: 2.0       # Scale the identity vector by 2
 em_scale: 2.0       # Scale the emotion vector by 2 as well
 
-num_images: 100     # Produce one hundred random images
+num_images: 5      # Produce one hundred random images
+use_yale: True
