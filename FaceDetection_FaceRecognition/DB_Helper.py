@@ -16,8 +16,7 @@ import sqlite3
 import os
 
 # PATH TO FOLDER CONTAINING DATA
-_PATH_DATA = 'C:/Users/FinalFred/Documents/SourceTree-Projects/ML/FaceDetection_FaceRecognition/data/yaleB' \
-             '/ExtendedYaleB_jpg'
+_PATH_DATA = 'C:/Users/FinalFred/Documents/SourceTree-Projects/ML/FaceDetection_FaceRecognition/training_data.txt'
 
 # DATABASE SETTINGS
 _DB_NAME = 'DB_FACES.db'
@@ -154,119 +153,99 @@ def insert_DB_MedianVector(PersonId, MedianVector):
 
 if __name__ == '__main__':
     import pickle
-    import random
     import cv2
     import time
     import Modules.FaceExtractor as FExtractor
     import Modules.FaceFeature as FFeature
+    from tqdm import tqdm
     from Modules.Enums import ImageProcessingModes as Ip
     from Modules.Enums import FaceLocalisationModes as Fl
     from Modules.Enums import FeatureExtractionModes as Fe
 
-    # SETTINGS
-    image_training_rate = 0.7   # value 0-1 determine percentage of training data
-
-    totalImages         = 0     # all images(files) found
-    totalFolders        = 0     # all subfolders found
-    test_images         = []    # images used for testing
-
+    # ------------------------
     # ImageProcessor SETTINGS
     pre_cliplimit       = 5
     pre_tile_grid_size  = (8, 8)
     face_out_size       = (224, 224)
-
-    post_gamma          = 3
 
     # haarcascades SETTINGS
     scale_factor        = 1.3
     min_neighbors       = 5
     max_faces           = 1
 
-    # META
-    face_counter            = 0     # counts number of faces added to database
-    no_face_counter         = 0     # counts number of times an image is not added to the database
-    second_chance_counter   = 0     # counts the times, the post_processing succeeded to find another face
+    # temporary database variables
+    person_id           = 0
+    subject_number      = 0
 
-    # make database ready and open connection
+    # META
+    total_images        = 0
+    successful_images   = 0
+    error_images        = 0
+
+    start_time          = time.time()
+    end_time            = 0
+    # ----------------------
+
+    # connect to database
     get_ready()
 
-    # count all files in all subdirectories
-    for folder in os.listdir(_PATH_DATA):
-        totalFolders += 1
-        for img in os.listdir(_PATH_DATA + '/' + folder):
-            totalImages += 1
+    training_data = []
+    # read training-data
+    with open(_PATH_DATA, 'rb') as data:
+        training_data = pickle.load(data)
+        total_images = len(training_data)
 
-    print('Total folder:', totalFolders)
-    print('Total files:', totalImages)
+    # iterate over training-data-list and save each file in database
+    # with subject-number, pose, lightning and feature-vector
+    for image_path in tqdm(training_data):
+        # image_path is like 'C:/toolkits/databases/ExtendedYaleB/yaleB39/yaleB39_P08A-035E+15.pgm'
+        image_info = image_path.split('/')[-1:][0][:-4]
+        # Subject number is between 1 and 28
+        SubjectNumber = int(image_info[5:7])
+        # its starting at 11 and number 14 is missing
+        if SubjectNumber < 15:
+            SubjectNumber -= 10
+        else:
+            SubjectNumber -= 11
+        # save to database when new subject
+        if SubjectNumber is not subject_number:
+            subject_number = SubjectNumber
+            # insert subject to database
+            person_id = insert_DB_Person(subject_number)
+        # name is 'yaleB03_P06A+035E+40.jpg' -> extract 06
+        pose = int(image_info[9:11])
+        # extract '035E+40'
+        lightning = image_info[12:]
 
-    # iterate over all files (should be images) and extract features
-    # then save them to database
-    for folder in os.listdir(_PATH_DATA):
-        print(totalFolders, 'left')
-        totalFolders -= 1
-        # Subject number extraced from folder name for yale B dataset
-        # folder is like 'yaleB25', then SubjectNumber will be '25'
-        SubjectNumber = folder[5:]
-        # measure time for processing one folder
-        time_folder = time.time()
-        # list of all images in this subdirectory
-        images      = os.listdir(_PATH_DATA + '/' + folder)
-        img_len     = len(images)
-        # random_test_list contains indexes of images which are not added to database
-        random_test_list = random.sample(range(img_len), int(img_len * (1 - image_training_rate)))
-        random_test_list.sort()
+        # read as grayscale image
+        img = cv2.imread(image_path, 0)
+        face_list = FExtractor.extract_faces(img,
+                                             [{Ip.CLAHE:
+                                                   {'cliplimit': pre_cliplimit,
+                                                    'tile_grid_size': pre_tile_grid_size}}],
+                                             [{Fl.HAARCASCADES_FACE_PRE_TRAINED:
+                                                   {'scale_factor': scale_factor,
+                                                    'min_neighbors': min_neighbors,
+                                                    'max_faces': max_faces}}],
+                                             face_out_size=face_out_size)
 
-        # insert subject to database
-        person_id = insert_DB_Person(SubjectNumber)
+        # save to database if face was found, otherwise write an error
+        if face_list and len(face_list) > 0:
+            # extract feature-vector
+            face_feature = FFeature.extract_features(face_list[0], mode=Fe.CNN_VGG_16_PRE_TRAINED)
 
-        # iterate every image in subdirectory and either add to db or to random_test_list
-        for i in range(img_len):
-            # print(totalImages, 'left')
-            totalImages -= 1
-            # add to random_test_list
-            if len(random_test_list) > 0 and i == random_test_list[0]:
-                test_images.append(_PATH_DATA + '/' + folder + '/' + images[i])
-                random_test_list.pop(0)
-            # add to db after feature extraction
-            else:
-                # read as grayscale image
-                img = cv2.imread(_PATH_DATA + '/' + folder + '/' + images[i], 0)
-                face_list = FExtractor.extract_faces(img,
-                                                     [{Ip.CLAHE:
-                                                           {'cliplimit': pre_cliplimit,
-                                                            'tile_grid_size': pre_tile_grid_size}}],
-                                                     [{Fl.HAARCASCADES_FACE_PRE_TRAINED:
-                                                           {'scale_factor': scale_factor,
-                                                            'min_neighbors': min_neighbors,
-                                                            'max_faces': max_faces}}],
-                                                     face_out_size=face_out_size)
-                # extract features of the face
-                if face_list and len(face_list) > 0:
-                    # name is 'yaleB03_P06A+035E+40.jpg' -> extract 06
-                    pose = images[i][9:11]
-                    # extract '035E+40'
-                    lightning = images[i][12:-4]
-                    face_feature = FFeature.extract_features(face_list[0], mode=Fe.CNN_VGG_16_PRE_TRAINED)
+            # save to database
+            insert_DB_FeatureVector(person_id, face_feature, pose, lightning)
 
-                    # save to database
-                    insert_DB_FeatureVector(person_id, face_feature, pose, lightning)
-                    face_counter += 1
-                else:
-                    no_face_counter += 1
-                print(totalImages,'left',  end='\r')
+            successful_images += 1
+        else:
+            tqdm.write('ERROR: NO FACE FOUND in : \n' + image_path)
+            error_images += 1
 
-        time_folder = time.time()-time_folder
-        print('\nSTATS FOLDER:', folder)
-        print('Files:\t', img_len)
-        print('Total time:\t', time_folder, 's')
-        print('Time/file:\t', time_folder/img_len, 's\n')
-        print('Successful second attempts:', FExtractor.get_second_chance_counter())
-        second_chance_counter += FExtractor.get_second_chance_counter()
-        FExtractor.reset_second_chance_counter()
-    print('Total faces added to DB:', face_counter)
-    print('Total of successful post-processing:', second_chance_counter)
-    print('Percentage of post-processing in DB:', second_chance_counter/face_counter)
-
-    # saving test-list to file
-    with open('path_test_data.txt', 'wb') as fp:
-        pickle.dump(test_images, fp)
+    time_ = time.time() - start_time
+    print('Total time:\t\t\t', time_, 's')
+    print('Average time per image:\t', time_/total_images, 's')
+    if error_images > 0:
+        print('WARNING: ', error_images, 'IMAGES WITH ERROR!')
+    else:
+        print('All images successfully saved!')
