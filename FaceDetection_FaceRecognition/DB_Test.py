@@ -10,6 +10,7 @@ import pickle
 from PIL import ImageGrab
 import os
 import time
+from tqdm import tqdm
 # import random
 
 
@@ -66,11 +67,14 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
     # sample_size = 15
     # random_sample = random.sample(data, sample_size)
     counter = 0
-    for img_path in data:
+    for image_path in tqdm(data):
         counter += 1
-        print(counter, '/', data_size, end='\r')
-        person_id = int(img_path[116:118])
-        img = cv2.imread(img_path, 0)
+        # image_path is like 'C:/toolkits/databases/ExtendedYaleB/yaleB39/yaleB39_P08A-035E+15.pgm'
+        image_info = image_path.split('/')[-1:][0][:-4]
+        person_id = int(image_info[5:7])
+        # it's starting at 11 and number 14 is missing
+        person_id = person_id - 10 if person_id < 15 else person_id - 11
+        img = cv2.imread(image_path, 0)
         face_list = FE.extract_faces(img,
                                      [{Ip.CLAHE:
                                            {'cliplimit': pre_cliplimit,
@@ -85,7 +89,7 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
             face_feature = FF.extract_features(face_list[0], mode=Fe.CNN_VGG_16_PRE_TRAINED)
             try:
                 match_row, min_d = FI.identify(face_feature)
-                match_id = match_row[1] + 10 if match_row[1] < 4 else match_row[1] + 11
+                match_id = match_row[1]
 
                 if match_id is person_id:
                     true_positive += 1
@@ -94,7 +98,7 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
                     false_positive += 1
                     avg_dist_false_pos += min_d
             except:
-                print('ERROR: No FaceFeature for', img_path)
+                print('ERROR: No FaceFeature for', image_path)
                 pass
 
     total_time = time.time() - start_time
@@ -122,9 +126,9 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
 
 if __name__ == '__main__':
     # if True: take screenshot and shutdown when error occurs
-    error_shutdown = False
+    error_shutdown = True
     # if True: shutdown when test is done
-    finish_shutdown = False
+    finish_shutdown = True
 
     try:
         init()
