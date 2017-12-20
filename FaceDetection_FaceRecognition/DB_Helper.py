@@ -202,7 +202,7 @@ if __name__ == '__main__':
         image_info = image_path.split('/')[-1:][0][:-4]
         # Subject number is between 1 and 28
         SubjectNumber = int(image_info[5:7])
-        # its starting at 11 and number 14 is missing
+        # it's starting at 11 and number 14 is missing
         if SubjectNumber < 15:
             SubjectNumber -= 10
         else:
