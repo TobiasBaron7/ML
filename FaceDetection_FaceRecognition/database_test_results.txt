@@ -1,0 +1,12 @@
+cosine-distance, nearest neighbor
+
+Datasize total: 3293
+Datasize tested: 3293
+Elapsed time: 3470.010451078415s
+Time per image: 1.0537535533186806s
+
+true-positive: 2740
+false-positive: 553
+
+avg_dist_true: 0.0568985522068
+avg_dist_false: 0.0877092002771
