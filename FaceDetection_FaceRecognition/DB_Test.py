@@ -62,6 +62,8 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
     false_positive      = 0
     avg_dist_true_pos   = 0
     avg_dist_false_pos  = 0
+    correct_data        = {}    # dict with image_info as key and 2D-array as value
+    incorrect_data      = {}    # with two numbers: [cosine-distance, number of comparisons]
 
     # only for testing: replace data with random_sample in for-loop
     # sample_size = 15
@@ -88,13 +90,15 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
         if face_list and len(face_list) > 0:
             face_feature = FF.extract_features(face_list[0], mode=Fe.CNN_VGG_16_PRE_TRAINED)
             try:
-                match_row, min_d = FI.identify(face_feature)
+                match_row, min_d, num_comp = FI.identify(face_feature)
                 match_id = match_row[1]
 
                 if match_id is person_id:
+                    correct_data[image_info] = [min_d, num_comp]
                     true_positive += 1
                     avg_dist_true_pos += min_d
                 else:
+                    incorrect_data[image_info] = [min_d, num_comp]
                     false_positive += 1
                     avg_dist_false_pos += min_d
             except:
@@ -103,8 +107,8 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
 
     total_time = time.time() - start_time
 
-    avg_dist_true_pos = avg_dist_true_pos/true_positive if true_positive > 0 else avg_dist_true_pos
-    avg_dist_false_pos = avg_dist_false_pos/false_positive if false_positive > 0 else avg_dist_false_pos
+    avg_dist_true_pos = avg_dist_true_pos/true_positive if true_positive > 0 else 0
+    avg_dist_false_pos = avg_dist_false_pos/false_positive if false_positive > 0 else 0
 
     print('Elapsed time:', total_time, 's')
     print('Time per image:', total_time/data_size, 's')
@@ -123,15 +127,21 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
         f.write('\n\navg_dist_true: ' + str(avg_dist_true_pos))
         f.write('\navg_dist_false: ' + str(avg_dist_false_pos))
 
+    with open('correct_classification_stats.pkl', 'wb') as co:
+        pickle.dump(correct_data, co)
+    with open('incorrect_classification_stats.pkl', 'wb') as ico:
+        pickle.dump(incorrect_data, ico)
+
 
 if __name__ == '__main__':
     # if True: take screenshot and shutdown when error occurs
-    error_shutdown = True
+    error_shutdown = False
     # if True: shutdown when test is done
-    finish_shutdown = True
+    finish_shutdown = False
 
     try:
         init()
+        # test automatically saves results to disk after done
         test()
     except:
         if error_shutdown:
