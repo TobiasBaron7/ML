@@ -33,6 +33,7 @@ def identify(v, distance='cosine'):
     # identification
     # calc distance from v to each feature vector
     min_d = float('inf')
+    num_comp = 0
     r = None
     if distance is 'euclidean':
         for row in _feature_vectors:
@@ -44,11 +45,12 @@ def identify(v, distance='cosine'):
     elif distance is 'cosine':
         v = (1/norm(v))*v
         for row in _feature_vectors:
+            num_comp += 1
             d = cosine(v, (1/row[3])*row[2])
 
             if d < min_d:
                 min_d = d
                 r = row
 
-    return r, min_d
+    return r, min_d, num_comp
 
