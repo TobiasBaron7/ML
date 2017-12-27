@@ -22,7 +22,7 @@ def identify(v, distance='cosine'):
 
     :param v:           input vector
     :param distance:    distance-metric; supports: 'eudlidean', 'cosine'
-    :return:            database-row and distance to this row's vector;
+    :return:            database-row and distance to this row's vector and number of comparisons;
                         if not found row is None and distance is infinity
     """
     global _feature_vectors
