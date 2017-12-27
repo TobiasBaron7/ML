@@ -11,6 +11,7 @@ from PIL import ImageGrab
 import os
 import time
 from tqdm import tqdm
+import numpy as np
 # import random
 
 
@@ -64,6 +65,8 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
     avg_dist_false_pos  = 0
     correct_data        = {}    # dict with image_info as key and 2D-array as value
     incorrect_data      = {}    # with two numbers: [cosine-distance, number of comparisons]
+    result_identity     = {}    # key: image_info, value: database id of feature vector
+    confusion_matrix    = np.zeros(shape=(29, 29))  # use identity as index, so range is [1-29] for 28 identities. [0] stays empty
 
     # only for testing: replace data with random_sample in for-loop
     # sample_size = 15
@@ -93,6 +96,8 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
                 match_row, min_d, num_comp = FI.identify(face_feature)
                 match_id = match_row[1]
 
+                result_identity[image_info] = match_row[0]
+                confusion_matrix[person_id][match_id] += 1
                 if match_id is person_id:
                     correct_data[image_info] = [min_d, num_comp]
                     true_positive += 1
@@ -117,7 +122,7 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
     print('\navg_dist_true:', avg_dist_true_pos)
     print('avg_dist_false:', avg_dist_false_pos)
 
-    with open('database_test_results.txt', 'w') as f:
+    with open('Statistics/Data/database_test_results.txt', 'w') as f:
         f.write('Datasize total: ' + str(data_size))
         f.write('\nDatasize tested: ' + str(true_positive + false_positive))
         f.write('\nElapsed time: ' + str(total_time) + 's')
@@ -127,17 +132,20 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
         f.write('\n\navg_dist_true: ' + str(avg_dist_true_pos))
         f.write('\navg_dist_false: ' + str(avg_dist_false_pos))
 
-    with open('correct_classification_stats.pkl', 'wb') as co:
+    with open('Statistics/Data/correct_classification_stats.pkl', 'wb') as co:
         pickle.dump(correct_data, co)
-    with open('incorrect_classification_stats.pkl', 'wb') as ico:
+    with open('Statistics/Data/incorrect_classification_stats.pkl', 'wb') as ico:
         pickle.dump(incorrect_data, ico)
+    with open('Statistics/Data/input_info_to_output_feature_identity.pkl', 'wb') as io:
+        pickle.dump(result_identity, io)
+    np.save('Statistics/Data/confusion_matrix', confusion_matrix)
 
 
 if __name__ == '__main__':
     # if True: take screenshot and shutdown when error occurs
-    error_shutdown = False
+    error_shutdown = True
     # if True: shutdown when test is done
-    finish_shutdown = False
+    finish_shutdown = True
 
     try:
         init()
