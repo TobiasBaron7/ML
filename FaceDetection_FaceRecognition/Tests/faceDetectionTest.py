@@ -12,6 +12,7 @@ startTime = time.time()
 
 #location of folders with images in each subfolder
 _imageSourcePath    = '../data/yaleB/ErrorYaleB/Data'
+_imageSourcePath    = 'test'
 #path to openCV haarcascade xml-files - CHANGE WITH CAUTION
 _cascadePath        = 'C:/opencv/data/haarcascades/'
 #path where to copy all faces which failed to detect
@@ -20,6 +21,8 @@ _failedFacesPath    = _imageSourcePath + '_FAILED'
 
 #load xml haarcascade for face
 face_cascade        = cv2.CascadeClassifier(_cascadePath + 'haarcascade_frontalface_default.xml')
+
+_CLAHE = cv2.createCLAHE(clipLimit=5, tileGridSize=(8, 8))
 
 
 
@@ -38,7 +41,8 @@ for folder in os.listdir(_imageSourcePath):
             totalImages += 1
 
 def histogram_equalization(img, show=False):
-    equ = cv2.equalizeHist(img)
+    # equ = cv2.equalizeHist(img)
+    equ = _CLAHE.apply(img)
     if show:
         res = np.hstack((img,equ)) #stacking images side-by-side
         cv2.imshow('img',res)
@@ -90,7 +94,6 @@ for folder in os.listdir(_imageSourcePath):
         except Exception as e:
             #print('ERROR:\n', e)
             raise
-    break
 
 endTime = time.time()
 

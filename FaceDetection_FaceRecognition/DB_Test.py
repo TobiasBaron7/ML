@@ -1,10 +1,7 @@
 ###FACE DETECTION - FACE RECOGNITION###
 import cv2
-from Modules import FaceExtractor as FE
 from Modules import FaceFeature as FF
 from Modules import FaceIdentificator as FI
-from Modules.Enums import ImageProcessingModes as Ip
-from Modules.Enums import FaceLocalisationModes as Fl
 from Modules.Enums import FeatureExtractionModes as Fe
 import pickle
 from PIL import ImageGrab
@@ -12,11 +9,12 @@ import os
 import time
 from tqdm import tqdm
 import numpy as np
-# import random
 
 
-test_data       = 'test_data.txt'
-data            = None
+test_data       = 'C:/Users/FinalFred/Documents/SourceTree-Projects/ML/Face_Generator/fdfr_faces/Data/Original_Yale_Test_Set_Picked'
+db_name         = 'DB_FACES_28.db'
+feature_mode    = Fe.CNN_VGG_16_PRE_TRAINED_28
+data            = []
 data_size       = 0
 
 
@@ -40,22 +38,29 @@ def init(test_data_path=None):
 
     :param test_data_path: path to .txt with test-images, default 'test_data.txt'
     """
-    global data, test_data, data_size
+    global data, test_data, data_size, db_name, feature_mode
 
-    FI.get_ready()
+    FI.get_ready(db_name=db_name)
 
     if test_data_path:
         test_data = test_data_path
     print('Loading file:\t\t', test_data)
-    with open(test_data, 'rb') as fp:
-        data = pickle.load(fp)
+    if os.path.exists(test_data):
+        for folder in os.listdir(test_data):
+            for file in os.listdir(test_data + '/' + folder):
+                data.append(test_data + '/' + folder + '/' + file)
+    else:
+        raise(ValueError, 'Invalid path to data! Directory does not exist:\n' + str(test_data))
     data_size = len(data)
     print('Loaded test-images:\t', data_size)
+
+    # set model (vgg16 original, vgg16 artificial,...)
+    FF.init(mode=feature_mode)
 
 
 def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neighbors=5,
          max_faces=1, face_out_size=(224, 224)):
-    global data, data_size
+    global data, data_size, feature_mode
 
     # Meta data
     start_time          = time.time()
@@ -80,35 +85,25 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
         # it's starting at 11 and number 14 is missing
         person_id = person_id - 10 if person_id < 15 else person_id - 11
         img = cv2.imread(image_path, 0)
-        face_list = FE.extract_faces(img,
-                                     [{Ip.CLAHE:
-                                           {'cliplimit': pre_cliplimit,
-                                            'tile_grid_size': pre_tile_grid_size}}],
-                                     [{Fl.HAARCASCADES_FACE_PRE_TRAINED:
-                                           {'scale_factor': scale_factor,
-                                            'min_neighbors': min_neighbors,
-                                            'max_faces': max_faces}}],
-                                     face_out_size=face_out_size)
         # extract features of the face
-        if face_list and len(face_list) > 0:
-            face_feature = FF.extract_features(face_list[0], mode=Fe.CNN_VGG_16_PRE_TRAINED)
-            try:
-                match_row, min_d, num_comp = FI.identify(face_feature)
-                match_id = match_row[1]
+        face_feature = FF.extract_features(img)
+        try:
+            match_row, min_d, num_comp = FI.identify(face_feature)
+            match_id = match_row[1]
 
-                result_identity[image_info] = match_row[0]
-                confusion_matrix[person_id][match_id] += 1
-                if match_id is person_id:
-                    correct_data[image_info] = [min_d, num_comp]
-                    true_positive += 1
-                    avg_dist_true_pos += min_d
-                else:
-                    incorrect_data[image_info] = [min_d, num_comp]
-                    false_positive += 1
-                    avg_dist_false_pos += min_d
-            except:
-                print('ERROR: No FaceFeature for', image_path)
-                pass
+            result_identity[image_info] = match_row[0]
+            confusion_matrix[person_id][match_id] += 1
+            if match_id is person_id:
+                correct_data[image_info] = [min_d, num_comp]
+                true_positive += 1
+                avg_dist_true_pos += min_d
+            else:
+                incorrect_data[image_info] = [min_d, num_comp]
+                false_positive += 1
+                avg_dist_false_pos += min_d
+        except:
+            print('ERROR: No FaceFeature for', image_path)
+            pass
 
     total_time = time.time() - start_time
 
@@ -141,11 +136,12 @@ def test(pre_cliplimit=5, pre_tile_grid_size=(8, 8), scale_factor=1.3, min_neigh
     np.save('Statistics/Data/confusion_matrix', confusion_matrix)
 
 
+
 if __name__ == '__main__':
     # if True: take screenshot and shutdown when error occurs
-    error_shutdown = True
+    error_shutdown = False
     # if True: shutdown when test is done
-    finish_shutdown = True
+    finish_shutdown = False
 
     try:
         init()

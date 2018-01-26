@@ -20,7 +20,7 @@ _PATH_DATA = 'C:/Users/FinalFred/Documents/SourceTree-Projects/ML/FaceDetection_
              '/ExtendedYaleB_jpg'
 
 # DATABASE SETTINGS
-_DB_NAME = 'DB_FACES.db'
+_DB_NAME = 'DB_FACES_28.db'
 _DB_PATH = 'C:/Users/FinalFred/Documents/SourceTree-Projects/ML/FaceDetection_FaceRecognition/data'
 
 # GLOBAL VARS
@@ -93,11 +93,13 @@ def _convert_array(t):
     return np.load(out)
 
 
-def _connect_database():
+def _connect_database(db=None):
     """
     Creates database at specified path and sets cursor.
     """
-    global _conn, _cursor
+    global _conn, _cursor, _DB_NAME
+    if db:
+        _DB_NAME = db
     try:
         _conn = sqlite3.connect(_DB_PATH + '/' + _DB_NAME, detect_types=sqlite3.PARSE_DECLTYPES)
         _cursor = _conn.cursor()
@@ -120,8 +122,8 @@ def _create_tables():
             raise
 
 
-def get_ready(create_tables=False):
-    _connect_database()
+def get_ready(create_tables=False, db=None):
+    _connect_database(db=db)
     if create_tables:
         _create_tables()
 

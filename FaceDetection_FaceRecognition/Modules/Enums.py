@@ -26,6 +26,9 @@ class FaceLocalisationModes:
 
 class FeatureExtractionModes:
     CNN_VGG_16_PRE_TRAINED          = 0
+    CNN_VGG_16_PRE_TRAINED_28       = 1
+    CNN_VGG_16_PRE_TRAINED_29       = 2
+    CNN_VGG_16_PRE_TRAINED_56       = 3
 
 
 class IdentificationModes:

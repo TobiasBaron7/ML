@@ -19,7 +19,7 @@ import os
 _PATH_DATA = 'C:/Users/FinalFred/Documents/SourceTree-Projects/ML/FaceDetection_FaceRecognition/training_data.txt'
 
 # DATABASE SETTINGS
-_DB_NAME = 'DB_FACES.db'
+_DB_NAME = 'DB_FACES_28.db'
 _DB_PATH = 'C:/Users/FinalFred/Documents/SourceTree-Projects/ML/FaceDetection_FaceRecognition/data'
 
 # GLOBAL VARS

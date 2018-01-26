@@ -82,6 +82,8 @@ class GenParser:
         Generate network inputs for a single image.
         """
 
+        print(params)
+
         if params['id'] is None:
             params['id'] = 0
         if params['em'] is None:
@@ -673,6 +675,7 @@ def generate_from_yaml(yaml_path, model_path, output_dir, batch_size=32,
                 'orientation': inputs['orientation'][idx:idx+batch_size,:],
             }
 
+        print(batch)
         gen = model.predict_on_batch(batch)
 
         for i in range(0, gen.shape[0]):

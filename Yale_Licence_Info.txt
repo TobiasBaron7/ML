@@ -1,0 +1,51 @@
+The extended Yale Face Database B contains 16128 images of 28 human subjects under 9 poses and 64 illumination conditions. The data format of this database is the same as the Yale Face Database B. Please refer to the homepage of the Yale Face Database B (or one copy of this page) for more detailed information of the data format.
+
+You are free to use the extended Yale Face Database B for research purposes. All publications which use this database should acknowledge the use of "the Exteded Yale Face Database B" and reference Athinodoros Georghiades, Peter Belhumeur, and David Kriegman's paper, "From Few to Many: Illumination Cone Models for Face Recognition under Variable Lighting and Pose", PAMI, 2001, [bibtex].
+bibtext:
+@Article{GeBeKr01,
+  author =  "Georghiades, A.S. and Belhumeur, P.N. and Kriegman, D.J.",
+  title =   "From Few to Many: Illumination Cone Models for Face Recognition under
+               Variable Lighting and Pose",
+  journal = "IEEE Trans. Pattern Anal. Mach. Intelligence",
+  year =  2001,
+  volume = 23,
+  number = 6,
+  pages= "643-660"} 
+
+The extended database as opposed to the original Yale Face Database B with 10 subjects was first reported by Kuang-Chih Lee, Jeffrey Ho, and David Kriegman in "Acquiring Linear Subspaces for Face Recognition under Variable Lighting, PAMI, May, 2005 [ pdf ]." All test image data used in the experiments are manually aligned, cropped, and then re-sized to 168x192 images. If you publish your experimental results with the cropped images, please reference the PAMI2005 paper as well. 
+
+ANNOTATION INFORMATION:
+The database contains 5760 single light source images of 10 subjects each seen under 576 viewing conditions (9 poses x 64 illumination conditions).  For every subject in a particular pose, an image with ambient (background) illumination was also captured. Hence, the total number of images is in fact 5760+90=5850. The total size of the compressed database is about 1GB.
+
+The 65 (64  illuminations + 1 ambient) images of a subject in a particular pose have been "tarred" and "gzipped" into a single file.  There are 90 (10 subjects x 9 poses) '*.tar.gz' files.  Each '*.tar.gz' file is about 11MB big. All filenames begin with the base name 'yaleB' followed by a two digit number signifying the subject number (01 - 10). The 2 digit number after '_P' signifies the pose number (00 - 08). (See below for the relative pose positions.) The images in each '*.tar.gz' file can be unpacked using the following two commands (under Unix):
+
+                        gunzip yaleB**_P0*.tar.gz
+                        tar xvf yaleB**_P0*.tar
+
+Note that all 65 images for any '*.tar' will unpack into the directory  './images/' which will be created if it does not already exist.
+
+The coordinates of faces in each set (e.g., 'yaleB01_P00.tar') can be found here. For the set 'yaleB01_P00.tar', for example, the coordinates are in the file 'yaleB01_P00.crop'. Each 'yaleB**_P**.crop' file contains two columns corresponding to the x- and the y-coordinates. For all the sets in the frontal pose (i.e., for the files 'yaleB**_P00.tar') the coordinates of the left eye, right eye, and mouth in each image have been appended on top of each other into two columns of length 195. The top 65 rows are for the left eye, the next 65 are for the right eye, and the rest are for the mouth centers. Files other than for the frontal pose (e.g., 'yaleB01_P07.crop') contain only the coordinates of the face centers (i.e., columns have a length of 65). As a final note, each of the 65 rows in the 'yaleB**_P0*.crop' files correspond (in the same order) to the images whose filenames appear in the file 'yaleB**_P**.info'. This '*.info' is unpacked together with the images in 'yaleB**_P0*.tar'.
+
+Now, a word about the naming of each image: The first part of the filename of an image follows the same convention as the filename of one of the "tarred" (and "gzipped") files. It begins with the base name 'yaleB' and is followed by the two digit number signifying the subject number and then by the two digit number signifying the pose. The rest of the filename deals with the azimuth and elevation of the single light source direction. For example, the image with the filename
+
+           'yaleB03_P06A+035E+40.pgm'
+
+belongs to subject #3 seen in pose #6, and the light source direction with respect to the camera axis is at 35 degrees azimuth ('A+035') and 40 degrees elevation ('E+40'). (Note that a positive azimuth implies that the light source was to the right of the subject while negative means it was to the left. Positive elevation implies above the horizon, while negative implies below the horizon.) Note that there were 47 (out of 5760) images whose corresponding strobe did not go off. These images basically look like the ambient image of the subject in a particular pose. There were also 4 more images which were slightly corrupted; during acquisition, there was a small imbalance in the intensities of the odd and even fields in each frame.
+
+The images in the database were captured using a purpose-built illumination rig. This rig is fitted with 64 computer controlled strobes. The 64 images of a subject in a particular pose were acquired at camera frame rate (30 frames/second) in about 2 seconds, so there is only small change in head pose and facial expression for those 64 (+1 ambient) images. The image with ambient illumination was captured without a strobe going off. The positions of the strobes in spherical coordinates are shown in this postscript file. (This postscript file also shows four rings containing the position of the strobes corresponding to the images of four subsets with increasing extremity in illumination. These subsets were used in the recognition experiments reported in the above-mentioned paper.)
+
+As mentioned before, for each subject, images were captured under nine different poses whose relative positions are shown below. Note the pose 0 is the frontal pose.
+
+              6
+                                  1
+                         2
+
+           7          3         0
+
+                         4
+                                  5
+              8
+
+Poses 1, 2, 3, 4, and 5 were about 12 degrees from the camera optical axis (i.e., from Pose 0), while poses 6, 7, and 8 were about 24 degrees. Here you can find a sample image per subject per pose with frontal illumination. Note that the position of a face in an image varies from pose to pose but is fairly constant within the images of a face seen in one of the 9 poses, since the 64  (+1 ambient) images were captured in about 2 seconds.
+
+The acquired images are 8-bit (gray scale) captured with a Sony XC-75 camera (with a linear response function) and stored in PGM raw format. The size of each image is 640(w) x 480 (h). You can load the images in Matlab [TM of Mathworks Co.] using the provided function 'getpgmraw.m'. You can display them with 'xv' under Unix/Linux or with other programs under MS Windows 98/2000/NT. 

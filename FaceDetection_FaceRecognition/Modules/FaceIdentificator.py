@@ -6,12 +6,12 @@ from numpy.linalg import norm
 _feature_vectors = None
 
 
-def get_ready():
+def get_ready(db_name=None):
     global _feature_vectors
     # on first run connect to database and get feature vectors
     if not _feature_vectors:
         print('connecting to database and collecting information..')
-        db.get_ready(create_tables=False)
+        db.get_ready(create_tables=False, db=db_name)
         _feature_vectors = db.select_all_featureVectors()
 
 

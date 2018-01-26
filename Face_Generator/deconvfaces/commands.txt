@@ -1,5 +1,5 @@
 Generate:
-python faces.py generate -m output/FaceGen.YaleFaces.model.d5.adam.h5 -o test_output -f params/random.yaml
+python faces.py generate -m output/100_epochs_tensorflow_FaceGen.YaleFaces.model.d5.adam.h5 -o test_output -f params/custom.yaml
 
 -m: pfad zum trainierten model
 -o: wieder output directory (überschreibt vorhandene Daten, das hab ich auch geändert. Normal bricht alles ab, wenn der Ordner bereits existiert)

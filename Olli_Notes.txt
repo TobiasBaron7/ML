@@ -1,0 +1,24 @@
+Servus Frederik,
+
+das neue Modell ist fertig. Freut mich, dass das alte schon ganz ok war.
+Der Trainings-Loss beim Neuen war bei ca 5.4987e-04.
+Wenn wir das Modell verwenden, solltest tu das in deiner Arbeit erwähnen.
+Die ersten Resultate, die ich mir angeschaut hab sind auch ok, aber wir müssen schaun, wie man mit dem Code gezielt neue Identitäten erzeugen kann. Kriegen wir schon irgendwie hin.
+
+Wünsch dir nen guten Rutsch und ein frohes neues Jahr!
+
+Ich meld mich dann nächste Woche wieder.
+
+Beste Grüße
+Olli  
+
+ 	
+Hi Frederik,
+
+haben es jetzt über die Feiertage geschafft, das model zu debuggen. Im Anhang ein 20 epoch model.
+Schaut schon besser aus.
+Morgen sollte auch das 100er model fertig sein.
+Kannst ja mal ein bisschen ausprobieren und evtl schonmal ein Scipt schreiben, das dir strukturiert Bilder generiert (also nicht random).
+
+Beste Grüße
+Olli
