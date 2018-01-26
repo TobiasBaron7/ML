@@ -1,0 +1,6 @@
+mode: single        # generates only one image
+use_yale: True      # use yale-database. Important!
+constrained: False  # True: constrained to unit length
+id: 5+7             # single int for one id or mix of several ids by seperating with '+'
+ps: 0               # pose; legal poses range from 0 to 8
+lt: 0               # lightning (negative values are darker)

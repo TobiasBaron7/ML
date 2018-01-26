@@ -1,0 +1,10 @@
+Datasize total: 3139
+Datasize tested: 3139
+Elapsed time: 3169.8064992427826s
+Time per image: 1.0098141125335403s
+
+true-positive: 2948
+false-positive: 191
+
+avg_dist_true: 0.112935115006
+avg_dist_false: 0.164884074245

@@ -1,0 +1,9 @@
+No of epochs = 100
+In all folders Training P00 - P03 indexed images Testing P04 - P05 indexed images
+
+28_ID
+[INFO] loss=2.9907, accuracy: 63.2458%
+
+29_ID
+[INFO] loss=3.3033, accuracy: 59.0615%
+

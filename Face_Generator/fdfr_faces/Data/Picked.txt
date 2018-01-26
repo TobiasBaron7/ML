@@ -1,0 +1,2 @@
+Picked Test-Set: 152 removed images
+Picked Training-Set: 417 removed images

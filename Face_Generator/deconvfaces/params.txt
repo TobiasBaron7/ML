@@ -1,0 +1,43 @@
+NUM_YALE_ID = 28
+NUM_ID = 57
+
+self.modes = {
+            'single'     : self.mode_single,
+            'random'     : self.mode_random,
+            'drunk'      : self.mode_drunk,
+            'interpolate': self.mode_interpolate,
+        }
+
+    DefaultParams = {
+        'mode'        : 'single',
+        'constrained' : True,
+        'use_yale'    : False,
+        'id'          : None,
+        'em'          : None,
+        'or'          : None,
+        'ps'          : None,
+        'lt'          : None,
+        'id_scale'    : 1.0,
+        'id_step'     : 0.1,
+        'id_min'      : None,
+        'id_max'      : None,
+        'em_scale'    : 1.0,
+        'em_step'     : 0.1,
+        'em_min'      : None,
+        'em_max'      : None,
+        'or_scale'    : 1.0,
+        'or_step'     : 0.1,
+        'or_min'      : None,
+        'or_max'      : None,
+        'ps_scale'    : 1.0,
+        'ps_step'     : 0.1,
+        'ps_min'      : None,
+        'ps_max'      : None,
+        'lt_scale'    : 1.0,
+        'lt_step'     : 0.1,
+        'lt_min'      : None,
+        'lt_max'      : None,
+        'num_images'  : '1s',
+        'fps'         : 30,
+        'keyframes'   : None,
+    }

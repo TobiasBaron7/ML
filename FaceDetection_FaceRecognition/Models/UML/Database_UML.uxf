@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>230</y>
+      <w>170</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>DB_Person
+-
++id:int
++SubjecNumbert:int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>410</y>
+      <w>160</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>DB_FeatureVector
+-
++id:int
++PersonId:int
++FeatureVector:numpy_array
++L2Norm:double
++Pose:int
++Lightning:varachar[16]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>320</y>
+      <w>240</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+PersonId</panel_attributes>
+    <additional_attributes>220.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>410</y>
+      <w>160</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>DB_MeanVector
+-
++id:int
++PersonId:int
++MeanVector:numpy_array
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>320</y>
+      <w>80</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+PersonId</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>410</y>
+      <w>160</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>DB_MedianVector
+-
++id:int
++PersonId:int
++MedianVector:numpy_array
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>320</y>
+      <w>240</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+PersonId</panel_attributes>
+    <additional_attributes>10.0;10.0;220.0;90.0</additional_attributes>
+  </element>
+</diagram>
